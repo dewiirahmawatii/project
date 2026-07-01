@@ -204,7 +204,6 @@ alt="Beauty">
 <section class="flash">
 
 <h2>
-
 🔥 FLASH SALE
 
 </h2>
