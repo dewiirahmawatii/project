@@ -1,28 +1,23 @@
-<div class="search-box">
-
-<input
-type="text"
-placeholder="🔍 Cari Skincare">
-
-</div>
 <?php
-
 session_start();
 
-if(!isset($_SESSION['admin']))
-{
-    header("Location:login.php");
+if(!isset($_SESSION['login'])){
+    header("Location: ../login.php");
+    exit;
 }
 
-include 'connect.php';
-
+include "../connect.php";
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Data Produk</title>
-<link rel="stylesheet" href="style.css">
+
+<title>Kelola Produk</title>
+
+<link rel="stylesheet" href="../assets/style.css">
+
 </head>
 
 <body>
@@ -31,194 +26,131 @@ include 'connect.php';
 
 <h2>🌸 BEAUTY</h2>
 
-<a href="dashboard.php">📊 Dashboard</a>
-<a href="kategori.php">🏷️ Kategori</a>
-<a href="produk.php">🧴 Produk</a>
-<a href="logout.php">🚪 Logout</a>
-<a href="pesanan.php">🛒 Pesanan</a>
+<a href="dashboard.php">🏠 Dashboard</a>
+
+<a href="produk.php" class="active">🧴 Produk</a>
+
+<a href="kategori.php">🏷 Kategori</a>
+
+<a href="pesanan.php">📦 Pesanan</a>
+
+<a href="../logout.php">🚪 Logout</a>
 
 </div>
 
 <div class="main">
 
-<h1>🧴 Data Produk</h1>
+<div class="top">
 
-<div class="produk-grid">
+<h1>Kelola Produk</h1>
+
+<a href="#" class="btnTambah">
++ Tambah Produk
+</a>
+
+</div>
+
+<div class="product-grid">
 
 <?php
 
 $sql="
+
 SELECT
-product.code,
-product.name,
-product.description,
-product.price,
-product.stock,
-product.image,
+
+product.*,
+
 category.category
+
 FROM product
-INNER JOIN category
+
+JOIN category
+
 ON product.category_code=category.code
+
 ";
 
 $result=mysqli_query($id,$sql);
 
 while($row=mysqli_fetch_assoc($result))
 {
+
 ?>
 
-<div class="produk-card">
+<div class="product-card">
 
-<img
-src="images/<?php echo $row['image']; ?>"
-class="produk-img">
-
-<div class="produk-content">
+<img src="../images/<?php echo $row['image']; ?>">
 
 <h3>
 
-<?php echo $row['name']; ?>
+<?php
+
+echo $row['name'];
+
+?>
 
 </h3>
 
 <p>
 
-<?php echo $row['description']; ?>
+<?php
+
+echo $row['description'];
+
+?>
 
 </p>
 
-<div class="harga">
+<h2>
 
 Rp <?php echo number_format($row['price']); ?>
 
-</div>
+</h2>
 
-<div class="stok">
+<span>
 
-Stock :
-<?php echo $row['stock']; ?>
+Stok :
 
-</div>
+<?php
 
-<div class="kategori">
+echo $row['stock'];
 
-<?php echo $row['category']; ?>
+?>
 
-</div>
+</span>
 
-<br>
+<br><br>
 
-<form
-method="POST"
-action="process_product.php">
+<span class="badge">
 
-<input
-type="hidden"
-name="code"
-value="<?php echo $row['code']; ?>">
+<?php
 
-<button
-name="delete_product"
-class="btn-delete">
+echo $row['category'];
 
-🗑 Hapus
+?>
 
-</button>
+</span>
 
-</form>
+<div class="aksi">
 
-</div>
+<a href="#">✏ Edit</a>
+
+<a href="#">🗑 Hapus</a>
 
 </div>
 
 </div>
 
 <?php
+
 }
+
 ?>
 
 </div>
 
-<div class="card-form">
-
-<h2>✨ Tambah Produk Baru</h2>
-
-<form method="POST"
-action="process_product.php">
-
-<input
-type="text"
-name="name"
-placeholder="Nama Produk"
-required>
-
-<br><br>
-
-<input
-type="text"
-name="description"
-placeholder="Deskripsi Produk"
-required>
-
-<br><br>
-
-<input
-type="number"
-name="price"
-placeholder="Harga"
-required>
-
-<br><br>
-
-<input
-type="number"
-name="stock"
-placeholder="Stok"
-required>
-
-<br><br>
-
-<input
-type="text"
-name="image"
-placeholder="Contoh : serum.jpg"
-required>
-
-<br><br>
-
-<select name="category_code" required>
-
-<?php
-
-$sql="SELECT * FROM category";
-$result=mysqli_query($id,$sql);
-
-while($row=mysqli_fetch_assoc($result))
-{
-?>
-
-<option value="<?php echo $row['code']; ?>">
-
-<?php echo $row['category']; ?>
-
-</option>
-
-<?php
-}
-?>
-
-</select>
-
-<br><br>
-
-<button
-name="save_product"
-class="btn-save">
-
-💖 SIMPAN PRODUK
-
-</button>
-
-</form>
-
 </div>
+
+</body>
+
+</html>

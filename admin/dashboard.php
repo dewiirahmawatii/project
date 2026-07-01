@@ -1,37 +1,24 @@
 <?php
-
 session_start();
 
-if(!isset($_SESSION['admin']))
-{
-    header("Location:login.php");
+if(!isset($_SESSION['login'])){
+    header("Location: ../login.php");
+    exit;
 }
 
-include 'connect.php';
+include "../connect.php";
 
-$totalKategori=mysqli_num_rows(
-mysqli_query($id,"SELECT * FROM category")
-);
-
-$totalProduk=mysqli_num_rows(
-mysqli_query($id,"SELECT * FROM product")
-);
-
-$totalPesanan=mysqli_num_rows(
-mysqli_query($id,"SELECT * FROM orders")
-);
-
+$produk=mysqli_fetch_row(mysqli_query($id,"SELECT COUNT(*) FROM product"));
+$kategori=mysqli_fetch_row(mysqli_query($id,"SELECT COUNT(*) FROM category"));
 ?>
 
 <!DOCTYPE html>
-
 <html>
-
 <head>
 
-<title>Beauty Skincare Dashboard</title>
+<title>Dashboard Admin</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../assets/style.css">
 
 </head>
 
@@ -41,93 +28,93 @@ mysqli_query($id,"SELECT * FROM orders")
 
 <h2>🌸 BEAUTY</h2>
 
-<a href="dashboard.php">📊 Dashboard</a>
+<a href="dashboard.php">🏠 Dashboard</a>
 
 <a href="produk.php">🧴 Produk</a>
 
-<a href="kategori.php">🏷️ Kategori</a>
+<a href="kategori.php">🏷 Kategori</a>
 
 <a href="pesanan.php">📦 Pesanan</a>
 
-<a href="logout.php">🚪 Logout</a>
+<a href="../logout.php">🚪 Logout</a>
 
 </div>
 
 <div class="main">
 
-<div class="dashboard-hero">
+<div class="top">
 
-<h1>🌸 BEAUTY SKINCARE ADMIN</h1>
+<h1>Dashboard Admin</h1>
 
-<p>
-Kelola produk, kategori, dan pesanan pelanggan
-</p>
+<div class="admin">
 
-</div>
+Halo,
 
-<div class="dashboard-grid">
-
-<div class="dash-card">
-
-<div class="icon">🧴</div>
-
-<h2>
-<?php echo $totalProduk; ?>
-</h2>
-
-<p>Total Produk</p>
-
-</div>
-
-<div class="dash-card">
-
-<div class="icon">🏷️</div>
-
-<h2>
-<?php echo $totalKategori; ?>
-</h2>
-
-<p>Total Kategori</p>
-
-</div>
-
-<div class="dash-card">
-
-<div class="icon">📦</div>
-
-<h2>
-<?php echo $totalPesanan; ?>
-</h2>
-
-<p>Total Pesanan</p>
+<b><?php echo $_SESSION['username']; ?></b>
 
 </div>
 
 </div>
 
-<div class="quick-menu">
+<div class="cards">
 
-<a href="produk.php" class="menu-card">
+<div class="box">
+
+<h3>Total Produk</h3>
+
+<h1><?php echo $produk[0]; ?></h1>
+
+</div>
+
+<div class="box">
+
+<h3>Total Kategori</h3>
+
+<h1><?php echo $kategori[0]; ?></h1>
+
+</div>
+
+<div class="box">
+
+<h3>Status</h3>
+
+<h1>Aktif</h1>
+
+</div>
+
+</div>
+
+<h2>Menu Cepat</h2>
+
+<div class="menu">
+
+<a href="produk.php">
 
 🧴
 
 <h3>Kelola Produk</h3>
 
+<p>Tambah, Edit dan Hapus Produk</p>
+
 </a>
 
-<a href="kategori.php" class="menu-card">
+<a href="kategori.php">
 
-🏷️
+🏷
 
 <h3>Kelola Kategori</h3>
 
+<p>Kelola seluruh kategori</p>
+
 </a>
 
-<a href="pesanan.php" class="menu-card">
+<a href="pesanan.php">
 
 📦
 
-<h3>Lihat Pesanan</h3>
+<h3>Kelola Pesanan</h3>
+
+<p>Lihat seluruh transaksi</p>
 
 </a>
 
@@ -136,5 +123,4 @@ Kelola produk, kategori, dan pesanan pelanggan
 </div>
 
 </body>
-
 </html>

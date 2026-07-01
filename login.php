@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'connect.php';
+include "connect.php";
 
 if(isset($_POST['login']))
 {
@@ -15,47 +15,72 @@ if(isset($_POST['login']))
 
     if(mysqli_num_rows($result)>0)
     {
-        $_SESSION['admin']=$username;
-        header("Location:dashboard.php");
+        $_SESSION['login']=true;
+        $_SESSION['username']=$username;
+
+        header("Location: admin/dashboard.php");
+        exit;
     }
     else
     {
-        echo "Login Gagal";
+        $error="Username atau Password Salah!";
     }
 }
 ?>
 
+<!DOCTYPE html>
 <html>
+
 <head>
+
 <title>Login Admin</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
-<body>
+<body class="login-body">
 
 <div class="login-box">
 
-<h1>🌸 BEAUTY ADMIN</h1>
+<h1>BEAUTY</h1>
+
+<p>Admin Login</p>
+
+<?php
+if(isset($error))
+{
+    echo "<div class='error'>$error</div>";
+}
+?>
 
 <form method="POST">
 
 <input
 type="text"
 name="username"
-placeholder="Username">
+placeholder="Username"
+required>
 
 <input
 type="password"
 name="password"
-placeholder="Password">
+placeholder="Password"
+required>
 
 <button
 type="submit"
 name="login">
-LOGIN
+Login
 </button>
 
 </form>
+
+<br>
+
+<a href="index.php">
+← Kembali ke Halaman User
+</a>
 
 </div>
 
