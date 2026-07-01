@@ -1,33 +1,50 @@
 <?php
+
 session_start();
 
-if (!isset($_SESSION['login'])) {
+if(!isset($_SESSION['login']))
+{
     header("Location:../login.php");
     exit;
 }
 
 include "../connect.php";
 
-// ======================
-// TOTAL PRODUK
-// ======================
-$queryProduct = mysqli_query($id, "SELECT COUNT(*) AS total FROM product");
-$product = mysqli_fetch_assoc($queryProduct);
+/* ===========================
+   STATISTIK
+=========================== */
 
-// ======================
-// TOTAL KATEGORI
-// ======================
-$queryCategory = mysqli_query($id, "SELECT COUNT(*) AS total FROM category");
-$category = mysqli_fetch_assoc($queryCategory);
+$product=mysqli_fetch_row(
+mysqli_query($id,"SELECT COUNT(*) FROM product")
+);
 
-// ======================
-// TOTAL PESANAN
-// ======================
-$queryOrder = mysqli_query($id, "SELECT COUNT(*) AS total FROM orders");
-$order = mysqli_fetch_assoc($queryOrder);
+$kategori=mysqli_fetch_row(
+mysqli_query($id,"SELECT COUNT(*) FROM category")
+);
+
+$pesanan=mysqli_fetch_row(
+mysqli_query($id,"SELECT COUNT(*) FROM orders")
+);
+
+/* Jika kolom total belum ada, pendapatan dibuat 0 */
+
+$pendapatan=[0];
+
+/* ===========================
+   PESANAN TERBARU
+=========================== */
+
+$order=mysqli_query(
+$id,
+"SELECT * FROM orders
+ORDER BY order_date DESC
+LIMIT 5"
+);
+
 ?>
 
 <!DOCTYPE html>
+
 <html lang="id">
 
 <head>
@@ -40,102 +57,439 @@ $order = mysqli_fetch_assoc($queryOrder);
 
 <link rel="stylesheet" href="../assets/style.css">
 
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
 </head>
 
 <body>
+
+<div class="admin">
+
+<!-- ===========================
+     SIDEBAR
+=========================== -->
 
 <div class="sidebar">
 
 <h2>🌸 BEAUTY</h2>
 
-<a href="dashboard.php">🏠 Dashboard</a>
+<a href="dashboard.php" class="active">
 
-<a href="produk.php">🧴 Produk</a>
+<i class="fa-solid fa-house"></i>
 
-<a href="kategori.php">🏷 Kategori</a>
+Dashboard
 
-<a href="pesanan.php">📦 Pesanan</a>
-
-<a href="../logout.php">🚪 Logout</a>
-
-</div>
-
-<div class="main">
-
-<div class="top">
-
-<h1>Dashboard Admin</h1>
-
-<div>
-
-Halo,
-<b><?php echo $_SESSION['username']; ?></b>
-
-</div>
-
-</div>
-
-<div class="cards">
-
-<div class="box">
-
-<h3>Total Produk</h3>
-
-<h1><?php echo $product['total']; ?></h1>
-
-</div>
-
-<div class="box">
-
-<h3>Total Kategori</h3>
-
-<h1><?php echo $category['total']; ?></h1>
-
-</div>
-
-<div class="box">
-
-<h3>Total Pesanan</h3>
-
-<h1><?php echo $order['total']; ?></h1>
-
-</div>
-
-</div>
-
-<h2 style="margin-bottom:20px;">Menu Cepat</h2>
-
-<div class="menu">
+</a>
 
 <a href="produk.php">
 
-<h1>🧴</h1>
+<i class="fa-solid fa-box-open"></i>
 
-<h3>Kelola Produk</h3>
-
-<p>Tambah, Edit dan Hapus Produk</p>
+Produk
 
 </a>
 
 <a href="kategori.php">
 
-<h1>🏷</h1>
+<i class="fa-solid fa-tags"></i>
 
-<h3>Kelola Kategori</h3>
-
-<p>Tambah, Edit dan Hapus Kategori</p>
+Kategori
 
 </a>
 
 <a href="pesanan.php">
 
-<h1>📦</h1>
+<i class="fa-solid fa-cart-shopping"></i>
 
-<h3>Kelola Pesanan</h3>
-
-<p>Lihat seluruh transaksi</p>
+Pesanan
 
 </a>
+
+<a href="../logout.php">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</div>
+
+<!-- ===========================
+     CONTENT
+=========================== -->
+
+<div class="content">
+
+<div class="topbar">
+
+<div>
+
+<h1>
+
+Dashboard Admin
+
+</h1>
+
+<p>
+
+Selamat Datang,
+
+<b>
+
+<?php echo $_SESSION['username'];?>
+
+</b>
+
+👋
+
+</p>
+
+</div>
+
+<div class="profile-admin">
+
+<img
+src="https://ui-avatars.com/api/?background=ff5fa2&color=fff&name=<?php echo $_SESSION['username'];?>">
+
+</div>
+
+</div>
+
+<!-- ===========================
+     CARD
+=========================== -->
+
+<div class="cards">
+
+<div class="card pink">
+
+<div>
+
+<h4>Total Produk</h4>
+
+<h1>
+
+<?php echo $product[0];?>
+
+</h1>
+
+</div>
+
+<i class="fa-solid fa-box"></i>
+
+</div>
+
+<div class="card blue">
+
+<div>
+
+<h4>Total Kategori</h4>
+
+<h1>
+
+<?php echo $kategori[0];?>
+
+</h1>
+
+</div>
+
+<i class="fa-solid fa-layer-group"></i>
+
+</div>
+
+<div class="card orange">
+
+<div>
+
+<h4>Total Pesanan</h4>
+
+<h1>
+
+<?php echo $pesanan[0];?>
+
+</h1>
+
+</div>
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+</div>
+
+<div class="card green">
+
+<div>
+
+<h4>Pendapatan</h4>
+
+<h2>
+
+Rp <?php echo number_format($pendapatan[0]);?>
+
+</h2>
+
+</div>
+
+<i class="fa-solid fa-wallet"></i>
+
+</div>
+
+</div>
+
+<!-- ===========================
+     PESANAN TERBARU
+=========================== -->
+
+<div class="table-card">
+
+<div class="table-title">
+
+<h2>
+
+📦 Pesanan Terbaru
+
+</h2>
+
+</div>
+
+<table class="produk-table">
+
+<tr>
+
+<th>Nama</th>
+
+<th>No HP</th>
+
+<th>Status</th>
+
+<th>Tanggal</th>
+
+</tr>
+
+<?php
+
+while($row=mysqli_fetch_assoc($order))
+{
+
+?>
+
+<tr>
+
+<td>
+
+<?php echo $row['customer_name'];?>
+
+</td>
+
+<td>
+
+<?php echo $row['customer_phone'];?>
+
+</td>
+
+<td>
+
+<span class="badge">
+
+<?php echo $row['status'];?>
+
+</span>
+
+</td>
+
+<td>
+
+<?php echo $row['order_date'];?>
+
+</td>
+
+</tr>
+
+<?php
+
+}
+
+?>
+</table>
+
+</div>
+
+<!-- ===========================
+     QUICK MENU
+=========================== -->
+
+<div class="quick-menu">
+
+<div class="menu-box">
+
+<div class="menu-icon pink">
+
+🧴
+
+</div>
+
+<h3>Kelola Produk</h3>
+
+<p>
+
+Tambah, Edit dan Hapus Produk
+
+</p>
+
+<a href="produk.php">
+
+Buka →
+
+</a>
+
+</div>
+
+<div class="menu-box">
+
+<div class="menu-icon blue">
+
+🏷
+
+</div>
+
+<h3>Kelola Kategori</h3>
+
+<p>
+
+Atur seluruh kategori skincare
+
+</p>
+
+<a href="kategori.php">
+
+Buka →
+
+</a>
+
+</div>
+
+<div class="menu-box">
+
+<div class="menu-icon orange">
+
+📦
+
+</div>
+
+<h3>Pesanan</h3>
+
+<p>
+
+Lihat seluruh transaksi pelanggan
+
+</p>
+
+<a href="pesanan.php">
+
+Buka →
+
+</a>
+
+</div>
+
+</div>
+
+<!-- ===========================
+     INFORMASI
+=========================== -->
+
+<div class="info-grid">
+
+<div class="info-card">
+
+<h2>
+
+📈 Statistik Hari Ini
+
+</h2>
+
+<div class="info-item">
+
+<span>Produk</span>
+
+<b>
+
+<?php echo $product[0]; ?>
+
+</b>
+
+</div>
+
+<div class="info-item">
+
+<span>Kategori</span>
+
+<b>
+
+<?php echo $kategori[0]; ?>
+
+</b>
+
+</div>
+
+<div class="info-item">
+
+<span>Pesanan</span>
+
+<b>
+
+<?php echo $pesanan[0]; ?>
+
+</b>
+
+</div>
+
+</div>
+
+<div class="info-card">
+
+<h2>
+
+💡 Tips Admin
+
+</h2>
+
+<ul class="tips">
+
+<li>✔ Selalu update stok produk.</li>
+
+<li>✔ Tambahkan produk baru secara rutin.</li>
+
+<li>✔ Cek pesanan setiap hari.</li>
+
+<li>✔ Pastikan foto produk berkualitas.</li>
+
+<li>✔ Perbarui kategori jika ada produk baru.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<!-- ===========================
+     FOOTER
+=========================== -->
+
+<div class="dashboard-footer">
+
+🌸 Beauty Skincare Admin Panel
+
+<br>
+
+<small>
+
+© 2026 All Rights Reserved
+
+</small>
+
+</div>
 
 </div>
 

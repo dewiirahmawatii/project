@@ -107,7 +107,7 @@ while($row=mysqli_fetch_assoc($result))
 
 <td>
 
-<?php echo $row['customer'];?>
+<?php echo $row['customer_name'];?>
 
 </td>
 
