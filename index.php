@@ -67,7 +67,7 @@ content="width=device-width, initial-scale=1.0">
 
 <link
 rel="stylesheet"
-href="style.css">
+href="assets/style.css">
 
 <link
 rel="stylesheet"
@@ -176,10 +176,9 @@ Glow With Confidence ✨
 
 Temukan berbagai skincare terbaik
 untuk wajah sehat, glowing,
-dan percaya diri setiap hari.
+and percaya diri setiap hari.
 
 </p>
-
 <a
 href="#produk"
 class="btn-shop">
