@@ -1,15 +1,12 @@
 <?php
+
 session_start();
 
-if(!isset($_SESSION['login'])){
-    header("Location: ../login.php");
-    exit;
+if(!isset($_SESSION['login']))
+{
+    header("Location:../login.php");
 }
 
-include "../connect.php";
-
-$produk=mysqli_fetch_row(mysqli_query($id,"SELECT COUNT(*) FROM product"));
-$kategori=mysqli_fetch_row(mysqli_query($id,"SELECT COUNT(*) FROM category"));
 ?>
 
 <!DOCTYPE html>

@@ -18,8 +18,7 @@ if(isset($_POST['login']))
         $_SESSION['login']=true;
         $_SESSION['username']=$username;
 
-        header("Location: admin/dashboard.php");
-        exit;
+        header("Location:admin/dashboard.php");
     }
     else
     {
@@ -35,26 +34,46 @@ if(isset($_POST['login']))
 
 <title>Login Admin</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
 <body class="login-body">
 
-<div class="login-box">
+<div class="login-container">
 
-<h1>BEAUTY</h1>
+<div class="login-left">
 
-<p>Admin Login</p>
+<h1>🌸 Beauty Skincare</h1>
 
-<?php
-if(isset($error))
-{
-    echo "<div class='error'>$error</div>";
-}
-?>
+<p>
+
+Kelola produk, kategori, dan pesanan
+dalam satu dashboard modern.
+
+</p>
+
+<img src="images/serum.jpg">
+
+</div>
+
+<div class="login-right">
 
 <form method="POST">
+
+<h2>Admin Login</h2>
+
+<?php
+
+if(isset($error))
+{
+    echo "<div class='alert'>$error</div>";
+}
+
+?>
 
 <input
 type="text"
@@ -71,18 +90,23 @@ required>
 <button
 type="submit"
 name="login">
+
 Login
+
 </button>
+
+<a href="index.php">
+
+← Kembali ke Toko
+
+</a>
 
 </form>
 
-<br>
-
-<a href="index.php">
-← Kembali ke Halaman User
-</a>
+</div>
 
 </div>
 
 </body>
+
 </html>

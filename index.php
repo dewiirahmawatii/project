@@ -1,8 +1,9 @@
 <?php
+include "connect.php";
 
-include 'connect.php';
-
-/* FILTER KATEGORI */
+/* ===========================
+   FILTER PRODUK
+=========================== */
 
 if(isset($_GET['category']))
 {
@@ -14,9 +15,6 @@ if(isset($_GET['category']))
     WHERE category_code='$category'
     ";
 }
-
-/* SEARCH */
-
 elseif(isset($_GET['keyword']))
 {
     $keyword=$_GET['keyword'];
@@ -24,221 +22,380 @@ elseif(isset($_GET['keyword']))
     $sql="
     SELECT *
     FROM product
-    WHERE name LIKE '%$keyword%'
+    WHERE
+    name LIKE '%$keyword%'
     OR description LIKE '%$keyword%'
     ";
 }
-
-/* TAMPIL SEMUA PRODUK */
-
 else
 {
     $sql="
     SELECT *
     FROM product
+    ORDER BY code DESC
     ";
 }
 
 $result=mysqli_query($id,$sql);
 
-/* JUMLAH KERANJANG */
+/* ===========================
+   JUMLAH KERANJANG
+=========================== */
 
-$jml=mysqli_num_rows(
-mysqli_query(
-$id,
-"SELECT * FROM cart"
-)
-);
+$jml=0;
 
+$cek=mysqli_query($id,"SHOW TABLES LIKE 'cart'");
+
+if(mysqli_num_rows($cek)>0)
+{
+    $jml=mysqli_num_rows(mysqli_query($id,"SELECT * FROM cart"));
+}
 ?>
 
 <!DOCTYPE html>
+
 <html>
+
 <head>
-<title>BEAUTY SKINCARE</title>
 
-<link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
 
-<link rel="stylesheet"
+<title>Beauty Skincare</title>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<link
+rel="stylesheet"
+href="style.css">
+
+<link
+rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
 <body>
 
+<!-- ===========================
+        NAVBAR
+=========================== -->
+
 <nav class="navbar">
 
 <div class="logo">
-🌸 BEAUTY SKINCARE
+
+🌸 BEAUTY
+
 </div>
+
+<form
+action="index.php"
+method="GET"
+class="search-form">
+
+<input
+
+type="text"
+
+name="keyword"
+
+id="search"
+
+placeholder="Cari skincare favoritmu..."
+
+autocomplete="off">
+
+<button>
+
+<i class="fa fa-search"></i>
+
+</button>
+
+</form>
 
 <div class="menu">
 
-<a href="index.php">Home</a>
+<a href="index.php">
 
-<a href="#kategori">Kategori</a>
+Home
 
-<a href="#produk">Produk</a>
+</a>
 
-<a href="cart.php">
-<?php
+<a href="#kategori">
 
-$jml=mysqli_num_rows(
-mysqli_query(
-$id,
-"SELECT * FROM cart"
-)
-);
+Kategori
 
-?>
+</a>
+
+<a href="#produk">
+
+Produk
+
+</a>
+
+<a href="wishlist.php">
+
+❤️ Wishlist
+
+</a>
 
 <a href="cart.php">
 
 🛒 Keranjang
 
-(<?php echo $jml; ?>)
+(<?php echo $jml;?>)
 
-</a>    
 </a>
 
 <a href="login.php">
+
 Admin
+
 </a>
 
 </div>
 
 </nav>
 
-<div class="hero">
+<!-- ===========================
+        HERO
+=========================== -->
+
+<section class="hero">
+
+<div class="hero-text">
 
 <h1>
+
 Glow With Confidence ✨
+
 </h1>
 
 <p>
-Temukan skincare terbaik untuk kulit sehat dan glowing
+
+Temukan berbagai skincare terbaik
+untuk wajah sehat, glowing,
+dan percaya diri setiap hari.
+
 </p>
-<div class="countdown-box">
 
-<h2>🔥 FLASH SALE BERAKHIR DALAM</h2>
+<a
+href="#produk"
+class="btn-shop">
 
-<div id="countdown">
-02:00:00
-</div>
+Belanja Sekarang
 
-</div>
-
-<form method="GET">
-
-<div class="search-box">
-
-<input
-type="text"
-id="search"
-placeholder="🔍 Cari Brightening, Serum, Acne Care">
+</a>
 
 </div>
-<div class="slider">
 
-<div class="slide active">
-🌸 PROMO SKINCARE 50%
-</div>
+<div class="hero-image">
 
-<div class="slide">
-✨ BUY 1 GET 1
-</div>
-
-<div class="slide">
-💖 FREE ONGKIR
-</div>
+<img
+src="images/banner.png"
+alt="Beauty">
 
 </div>
-</form>
-<div class="flash-sale">
+
+</section>
+
+<!-- ===========================
+        FLASH SALE
+=========================== -->
+
+<section class="flash">
 
 <h2>
+
 🔥 FLASH SALE
+
 </h2>
+
+<div id="countdown">
+
+02:00:00
+
+</div>
 
 <div class="flash-grid">
 
-<div class="flash-item">
-50% OFF
-</div>
+<div class="flash-card">
 
-<div class="flash-item">
-BUY 1 GET 1
-</div>
+💖
 
-<div class="flash-item">
-FREE ONGKIR
-</div>
+<h3>
 
-<div class="flash-item">
-BEST SELLER
-</div>
+Diskon 50%
+
+</h3>
 
 </div>
 
+<div class="flash-card">
+
+✨
+
+<h3>
+
+Buy 1 Get 1
+
+</h3>
+
+</div>
+
+<div class="flash-card">
+
+🚚
+
+<h3>
+
+Gratis Ongkir
+
+</h3>
+
+</div>
+
+<div class="flash-card">
+
+⭐
+
+<h3>
+
+Best Seller
+
+</h3>
+
 </div>
 
 </div>
 
-<div class="banner-container">
+</section>
 
-<div class="banner-card">
-💖 50% OFF Brightening Series
+<!-- ===========================
+        BANNER PROMO
+=========================== -->
+
+<section class="banner-section">
+
+<div class="banner-card pink">
+
+<h2>✨ Brightening Series</h2>
+
+<p>Dapatkan diskon hingga 50%</p>
+
+<a href="#produk">Belanja Sekarang</a>
+
 </div>
 
-<div class="banner-card">
-✨ Best Seller Skincare
+<div class="banner-card purple">
+
+<h2>💖 Best Seller</h2>
+
+<p>Produk favorit pelanggan</p>
+
+<a href="#produk">Lihat Produk</a>
+
 </div>
 
-<div class="banner-card">
-🧴 New Arrival Serum
-</div>
+<div class="banner-card orange">
+
+<h2>🚚 Gratis Ongkir</h2>
+
+<p>Minimal belanja Rp100.000</p>
+
+<a href="#produk">Belanja</a>
 
 </div>
 
-<h2 class="section-title" id="kategori">
-🏷️ Kategori Favorit
+</section>
+
+<!-- ===========================
+        KATEGORI
+=========================== -->
+
+<section id="kategori">
+
+<div class="title">
+
+<h2>
+
+🏷️ Kategori Produk
+
 </h2>
+
+<p>
+
+Pilih kategori skincare favoritmu
+
+</p>
+
+</div>
 
 <div class="kategori-grid">
 
 <?php
 
-$kategori=mysqli_query(
-$id,
-"SELECT * FROM category"
-);
+$kategori=mysqli_query($id,"SELECT * FROM category");
 
 while($k=mysqli_fetch_assoc($kategori))
 {
+
 ?>
 
 <a
-href="index.php?category=<?php echo $k['code']; ?>"
+href="index.php?category=<?php echo $k['code'];?>"
 class="kategori-card">
 
+<div class="icon">
+
+🧴
+
+</div>
+
 <h3>
-<?php echo $k['category']; ?>
+
+<?php
+
+echo $k['category'];
+
+?>
+
 </h3>
 
 </a>
 
 <?php
+
 }
+
 ?>
 
 </div>
-<h2 class="section-title">
-✨ Produk Terbaru
+
+</section>
+
+<!-- ===========================
+        PRODUK
+=========================== -->
+
+<section id="produk">
+
+<div class="title">
+
+<h2>
+
+🔥 Produk Terlaris
+
 </h2>
 
-<h2 class="section-title" id="produk">
-🔥 Produk Terlaris
-</h2>
+<p>
+
+Skincare pilihan dengan kualitas terbaik
+
+</p>
+
+</div>
 
 <div
 class="produk-grid"
@@ -248,20 +405,33 @@ id="result">
 
 while($row=mysqli_fetch_assoc($result))
 {
+
 ?>
 
 <div class="produk-card">
 
+<div class="produk-image">
+
 <img
-src="images/<?php echo $row['image']; ?>"
-class="produk-img">
+src="images/<?php echo $row['image'];?>"
+alt="<?php echo $row['name'];?>">
+
+<span class="badge">
+
+BEST
+
+</span>
+
+</div>
 
 <div class="produk-content">
 
 <h3>
 
 <?php
+
 echo $row['name'];
+
 ?>
 
 </h3>
@@ -269,18 +439,28 @@ echo $row['name'];
 <p>
 
 <?php
+
 echo $row['description'];
+
 ?>
 
 </p>
 
 <div class="harga">
 
-Rp
+Rp <?php echo number_format($row['price']);?>
 
-<?php
-echo number_format($row['price']);
-?>
+</div>
+
+<div class="stok">
+
+Stok :
+
+<b>
+
+<?php echo $row['stock'];?>
+
+</b>
 
 </div>
 
@@ -288,111 +468,263 @@ echo number_format($row['price']);
 
 ⭐⭐⭐⭐⭐
 
-<?php
-echo $row['rating'];
-?>
+<span>
+
+4.9
+
+</span>
 
 </div>
 
-<br>
+<div class="produk-button">
 
 <a
-href="cart.php?add=<?php echo $row['code']; ?>"
+href="cart.php?add=<?php echo $row['code'];?>"
 class="btn-cart">
 
-🛒 Tambah Keranjang
+🛒 Keranjang
+
+</a>
 
 <a
+href="wishlist.php?add=<?php echo $row['code'];?>"
+class="btn-love">
 
-href="wishlist.php?add=<?php echo $row['code']; ?>"
-
-class="btn-save">
-
-❤️ Wishlist
+❤
 
 </a>
 
-</a>
+</div>
 
 </div>
 
 </div>
 
 <?php
+
 }
+
 ?>
 
 </div>
-<script>
 
-document
-.getElementById("search")
-.addEventListener(
-"keyup",
+</section>
 
-function()
-{
+<!-- ===========================
+        BAGIAN 3 LANJUT...
+=========================== -->
+<!-- ===========================
+        KEUNGGULAN TOKO
+=========================== -->
 
-let keyword=this.value;
+<section class="why-us">
 
-fetch(
-"search.php?keyword="+keyword
-)
+<div class="title">
 
-.then(
-response=>response.text()
-)
+<h2>Mengapa Memilih Beauty Skincare?</h2>
 
-.then(
-data=>
-{
-document
-.getElementById("result")
-.innerHTML=data;
-});
+<p>Kami menyediakan produk skincare original dengan kualitas terbaik.</p>
 
-});
+</div>
 
-</script>
-<script>
+<div class="why-grid">
 
-let slides=
-document.querySelectorAll(".slide");
+<div class="why-card">
 
-let index=0;
+<i class="fa-solid fa-truck-fast"></i>
 
-setInterval(()=>{
+<h3>Gratis Ongkir</h3>
 
-slides[index]
-.classList.remove("active");
+<p>Gratis ongkir untuk pembelian minimal Rp100.000.</p>
 
-index++;
+</div>
 
-if(index>=slides.length)
-{
-index=0;
-}
+<div class="why-card">
 
-slides[index]
-.classList.add("active");
+<i class="fa-solid fa-shield-heart"></i>
 
-},3000);
+<h3>100% Original</h3>
 
-</script>
+<p>Semua produk dijamin asli dan bergaransi.</p>
+
+</div>
+
+<div class="why-card">
+
+<i class="fa-solid fa-headset"></i>
+
+<h3>Customer Service</h3>
+
+<p>Siap membantu selama 24 jam.</p>
+
+</div>
+
+<div class="why-card">
+
+<i class="fa-solid fa-credit-card"></i>
+
+<h3>Pembayaran Aman</h3>
+
+<p>Mendukung berbagai metode pembayaran.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ===========================
+        FOOTER
+=========================== -->
+
 <footer class="footer">
 
-<h3>
-🌸 BEAUTY SKINCARE
-</h3>
+<div class="footer-grid">
+
+<div>
+
+<h2>🌸 BEAUTY SKINCARE</h2>
 
 <p>
-Glow With Confidence
+
+Glow With Confidence.
+
+Produk skincare terbaik untuk semua jenis kulit.
+
 </p>
 
-<p>
-© 2026 Beauty Skincare
+</div>
+
+<div>
+
+<h3>Menu</h3>
+
+<a href="index.php">Home</a>
+
+<a href="#kategori">Kategori</a>
+
+<a href="#produk">Produk</a>
+
+</div>
+
+<div>
+
+<h3>Kontak</h3>
+
+<p>📍 Indonesia</p>
+
+<p>📞 0812-3456-7890</p>
+
+<p>✉ beauty@gmail.com</p>
+
+</div>
+
+<div>
+
+<h3>Follow Us</h3>
+
+<i class="fa-brands fa-instagram fa-2x"></i>
+
+<i class="fa-brands fa-facebook fa-2x"></i>
+
+<i class="fa-brands fa-tiktok fa-2x"></i>
+
+</div>
+
+</div>
+
+<hr>
+
+<p class="copyright">
+
+© 2026 Beauty Skincare. All Rights Reserved.
+
 </p>
 
 </footer>
+
+<script>
+
+/* ===========================
+SEARCH AJAX
+=========================== */
+
+const search=document.getElementById("search");
+
+if(search){
+
+search.addEventListener("keyup",function(){
+
+let keyword=this.value;
+
+fetch("search.php?keyword="+keyword)
+
+.then(res=>res.text())
+
+.then(data=>{
+
+document.getElementById("result").innerHTML=data;
+
+});
+
+});
+
+}
+
+/* ===========================
+COUNTDOWN
+=========================== */
+
+let waktu=7200;
+
+setInterval(function(){
+
+let jam=Math.floor(waktu/3600);
+
+let menit=Math.floor((waktu%3600)/60);
+
+let detik=waktu%60;
+
+document.getElementById("countdown").innerHTML=
+
+String(jam).padStart(2,'0')+":"
+
++String(menit).padStart(2,'0')+":"
+
++String(detik).padStart(2,'0');
+
+if(waktu>0){
+
+waktu--;
+
+}
+
+},1000);
+
+/* ===========================
+ANIMASI CARD
+=========================== */
+
+const cards=document.querySelectorAll(".produk-card");
+
+cards.forEach(function(card){
+
+card.addEventListener("mouseenter",function(){
+
+card.style.transform="translateY(-10px)";
+
+});
+
+card.addEventListener("mouseleave",function(){
+
+card.style.transform="translateY(0px)";
+
+});
+
+});
+
+</script>
+
 </body>
+
 </html>
