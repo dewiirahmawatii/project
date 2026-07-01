@@ -67,7 +67,7 @@ content="width=device-width, initial-scale=1.0">
 
 <link
 rel="stylesheet"
-href="style.css">
+href="assets/style.css">
 
 <link
 rel="stylesheet"
@@ -173,11 +173,9 @@ Glow With Confidence ✨
 </h1>
 
 <p>
-
 Temukan berbagai skincare terbaik
 untuk wajah sehat, glowing,
 and percaya diri setiap hari.
-
 </p>
 <a
 href="#produk"
@@ -192,7 +190,7 @@ Belanja Sekarang
 <div class="hero-image">
 
 <img
-src="images/banner.png"
+src="images/purple/mois.jpeg"
 alt="Beauty">
 
 </div>

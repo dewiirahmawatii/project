@@ -3,7 +3,7 @@
 $id=mysqli_connect(
     "localhost",
     "root",
-    "nurcahya13",
+    "Indahamiati135",
     "beautyskincare"
 );
 
