@@ -10,6 +10,14 @@ if(!isset($_SESSION['login']))
 
 include "../connect.php";
 
+$code=$_GET['id'];
+
+$sql="SELECT * FROM product WHERE code='$code'";
+
+$result=mysqli_query($id,$sql);
+
+$data=mysqli_fetch_assoc($result);
+
 $kategori=mysqli_query($id,"SELECT * FROM category");
 
 ?>
@@ -22,7 +30,7 @@ $kategori=mysqli_query($id,"SELECT * FROM category");
 
 <meta charset="UTF-8">
 
-<title>Tambah Produk</title>
+<title>Edit Produk</title>
 
 <link rel="stylesheet" href="../assets/style.css">
 
@@ -35,49 +43,37 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <div class="admin">
 
-<!-- SIDEBAR -->
-
 <div class="sidebar">
 
 <h2>🌸 BEAUTY</h2>
 
 <a href="dashboard.php">
-<i class="fa fa-home"></i>
-Dashboard
+🏠 Dashboard
 </a>
 
 <a href="produk.php" class="active">
-<i class="fa fa-box"></i>
-Produk
+🧴 Produk
 </a>
 
 <a href="kategori.php">
-<i class="fa fa-tags"></i>
-Kategori
+🏷 Kategori
 </a>
 
 <a href="pesanan.php">
-<i class="fa fa-cart-shopping"></i>
-Pesanan
+📦 Pesanan
 </a>
 
 <a href="../logout.php">
-Logout
+🚪 Logout
 </a>
 
 </div>
-
-<!-- CONTENT -->
 
 <div class="content">
 
 <div class="topbar">
 
-<h1>
-
-Tambah Produk
-
-</h1>
+<h1>Edit Produk</h1>
 
 <a href="produk.php" class="btn">
 
@@ -88,10 +84,19 @@ Tambah Produk
 </div>
 
 <form
+
 action="../process_product.php"
+
 method="POST"
+
 enctype="multipart/form-data"
+
 class="form-produk">
+
+<input
+type="hidden"
+name="code"
+value="<?php echo $data['code'];?>">
 
 <label>
 
@@ -102,6 +107,7 @@ Nama Produk
 <input
 type="text"
 name="name"
+value="<?php echo $data['name'];?>"
 required>
 
 <label>
@@ -112,8 +118,7 @@ Deskripsi
 
 <textarea
 name="description"
-rows="5"
-required></textarea>
+rows="5"><?php echo $data['description'];?></textarea>
 
 <label>
 
@@ -124,7 +129,7 @@ Harga
 <input
 type="number"
 name="price"
-required>
+value="<?php echo $data['price'];?>">
 
 <label>
 
@@ -135,7 +140,7 @@ Stok
 <input
 type="number"
 name="stock"
-required>
+value="<?php echo $data['stock'];?>">
 
 <label>
 
@@ -154,7 +159,18 @@ while($row=mysqli_fetch_assoc($kategori))
 ?>
 
 <option
-value="<?php echo $row['code'];?>">
+
+value="<?php echo $row['code'];?>"
+
+<?php
+
+if($row['code']==$data['category_code'])
+
+echo"selected";
+
+?>
+
+>
 
 <?php echo $row['category'];?>
 
@@ -170,32 +186,39 @@ value="<?php echo $row['code'];?>">
 
 <label>
 
-Upload Gambar
+Gambar Produk
 
 </label>
 
 <input
+
 type="file"
+
 name="image"
+
 id="image"
+
 accept="image/*">
 
 <div class="preview">
 
 <img
+
 id="preview"
-src="../images/no-image.png">
+
+src="../images/<?php echo $data['image'];?>">
 
 </div>
 
 <button
+
 type="submit"
-name="save_product"
+
+name="update_product"
+
 class="btn-save">
 
-<i class="fa fa-floppy-disk"></i>
-
-Simpan Produk
+💾 Update Produk
 
 </button>
 

@@ -1,81 +1,161 @@
 <?php
 
-include 'connect.php';
+include "connect.php";
 
-/* CREATE PRODUCT */
+/* ===========================
+   TAMBAH PRODUK
+=========================== */
 
 if(isset($_POST['save_product']))
 {
 
-$StrSQL="
+    $name=$_POST['name'];
 
-INSERT INTO product
-(
-name,
-description,
-price,
-stock,
-category_code,
-image
-)
+    $description=$_POST['description'];
 
-VALUES
-(
-'".$_POST['name']."',
-'".$_POST['description']."',
-'".$_POST['price']."',
-'".$_POST['stock']."',
-'".$_POST['category_code']."',
-'".$_POST['image']."'
-)
+    $price=$_POST['price'];
 
-";
+    $stock=$_POST['stock'];
 
-mysqli_query($id,$StrSQL);
+    $category=$_POST['category_code'];
+
+    $image="";
+
+    if($_FILES['image']['name']!="")
+    {
+
+        $image=time()."_".$_FILES['image']['name'];
+
+        move_uploaded_file(
+
+            $_FILES['image']['tmp_name'],
+
+            "images/".$image
+
+        );
+
+    }
+
+    $sql="INSERT INTO product
+    (
+        name,
+        description,
+        price,
+        stock,
+        image,
+        category_code
+    )
+    VALUES
+    (
+        '$name',
+        '$description',
+        '$price',
+        '$stock',
+        '$image',
+        '$category'
+    )";
+
+    mysqli_query($id,$sql);
+
+    header("Location:admin/produk.php");
 
 }
 
-/* UPDATE PRODUCT */
+/* ===========================
+   UPDATE PRODUK
+=========================== */
 
 if(isset($_POST['update_product']))
 {
 
-$StrSQL="
+    $code=$_POST['code'];
 
-UPDATE product SET
+    $name=$_POST['name'];
 
-name='".$_POST['name']."',
-description='".$_POST['description']."',
-price='".$_POST['price']."',
-stock='".$_POST['stock']."',
-category_code='".$_POST['category_code']."',
-image='".$_POST['image']."'
+    $description=$_POST['description'];
 
-WHERE code='".$_POST['code']."'
+    $price=$_POST['price'];
 
-";
+    $stock=$_POST['stock'];
 
-mysqli_query($id,$StrSQL);
+    $category=$_POST['category_code'];
+
+    if($_FILES['image']['name']!="")
+    {
+
+        $image=time()."_".$_FILES['image']['name'];
+
+        move_uploaded_file(
+
+            $_FILES['image']['tmp_name'],
+
+            "images/".$image
+
+        );
+
+        $sql="UPDATE product SET
+
+        name='$name',
+
+        description='$description',
+
+        price='$price',
+
+        stock='$stock',
+
+        image='$image',
+
+        category_code='$category'
+
+        WHERE code='$code'";
+
+    }
+
+    else
+
+    {
+
+        $sql="UPDATE product SET
+
+        name='$name',
+
+        description='$description',
+
+        price='$price',
+
+        stock='$stock',
+
+        category_code='$category'
+
+        WHERE code='$code'";
+
+    }
+
+    mysqli_query($id,$sql);
+
+    header("Location:admin/produk.php");
 
 }
 
-/* DELETE PRODUCT */
+/* ===========================
+   HAPUS PRODUK
+=========================== */
 
-if(isset($_POST['delete_product']))
+if(isset($_GET['delete']))
 {
 
-$StrSQL="
+    $code=$_GET['delete'];
 
-DELETE FROM product
+    mysqli_query(
 
-WHERE code='".$_POST['code']."'
+        $id,
 
-";
+        "DELETE FROM product WHERE code='$code'"
 
-mysqli_query($id,$StrSQL);
+    );
+
+    header("Location:admin/produk.php");
 
 }
-
-header("Location:produk.php");
 
 ?>
