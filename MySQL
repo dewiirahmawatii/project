@@ -1,0 +1,34 @@
+CREATE DATABASE IF NOT EXISTS skincaredb;
+
+USE skincaredb;
+
+CREATE TABLE category (
+    code INT AUTO_INCREMENT PRIMARY KEY,
+    category VARCHAR(100) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE product (
+    code INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    description TEXT,
+    price DECIMAL(12,2),
+    stock INT,
+    category_code INT,
+    FOREIGN KEY (category_code) REFERENCES category(code)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+INSERT INTO category (category) VALUES
+('Sunscreen'),
+('Moisturizer'),
+('Cleanser'),
+('Serum'),
+('Toner');
+
+INSERT INTO product (name, description, price, stock, category_code) VALUES
+('Azarine Sunscreen Gel SPF45', 'Sunscreen ringan untuk kulit berminyak', 65000, 20, 1),
+('Skintific 5X Ceramide Moisturizer', 'Moisturizer untuk memperbaiki skin barrier', 135000, 15, 2),
+('Hada Labo Gokujyun Cleanser', 'Pembersih wajah lembut tanpa alkohol', 55000, 25, 3),
+('Somethinc Niacinamide Serum', 'Serum untuk mencerahkan wajah', 120000, 10, 4),
+('Avoskin Hydrating Toner', 'Toner hidrasi untuk kulit kering', 99000, 12, 5);
