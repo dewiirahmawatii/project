@@ -1,48 +1,49 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['login']))
-{
+if (!isset($_SESSION['login'])) {
     header("Location:../login.php");
     exit;
 }
 
 include "../connect.php";
 
-$sql="SELECT
-product.code,
-product.name,
-product.description,
-product.price,
-product.stock,
-product.image,
-category.category
-FROM product
-LEFT JOIN category
-ON product.category_code=category.code
-ORDER BY product.code DESC";
+$sql = "SELECT
+            product.code,
+            product.name,
+            product.description,
+            product.price,
+            product.stock,
+            product.image,
+            category.category
+        FROM product
+        LEFT JOIN category
+        ON product.category_code = category.code";
 
-$result=mysqli_query($id,$sql);
-
+$result = mysqli_query($id, $sql);
 ?>
-<!DOCTYPE html>
 
-<html>
+<!DOCTYPE html>
+<html lang="id">
 
 <head>
 
+<meta charset="UTF-8">
+
 <title>Kelola Produk</title>
 
-<link rel="stylesheet" href="../assets/style.css">
-
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../assets/style.css">
 
 </head>
 
 <body>
 
-<div class="admin">
+<div class="admin-container">
+
+<!-- Sidebar -->
 
 <div class="sidebar">
 
@@ -53,7 +54,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 Dashboard
 </a>
 
-<a class="active">
+<a href="produk.php" class="active">
 <i class="fa fa-box"></i>
 Produk
 </a>
@@ -64,60 +65,42 @@ Kategori
 </a>
 
 <a href="pesanan.php">
-<i class="fa fa-cart-shopping"></i>
+<i class="fa fa-shopping-cart"></i>
 Pesanan
 </a>
 
 <a href="../logout.php">
+<i class="fa fa-sign-out-alt"></i>
 Logout
 </a>
 
 </div>
 
+<!-- Content -->
+
 <div class="content">
-    <div class="topbar">
 
-<h1>
+<div class="topbar">
 
-Kelola Produk
+<h1>Kelola Produk</h1>
 
-</h1>
+<a href="tambah_produk.php" class="btn-add">
 
-<div>
+<i class="fa fa-plus"></i>
 
-<input
-type="text"
-placeholder="Cari produk..."
-class="search">
-
-<a
-href="tambah_produk.php"
-class="btn">
-
-+ Tambah Produk
+Tambah Produk
 
 </a>
 
 </div>
 
-</div>
-<table class="produk-table">
+<input
+type="text"
+id="search"
+placeholder="🔍 Cari produk..."
+class="search">
 
-<tr>
-
-<th>Gambar</th>
-
-<th>Nama</th>
-
-<th>Harga</th>
-
-<th>Stok</th>
-
-<th>Kategori</th>
-
-<th>Aksi</th>
-
-</tr>
+<div class="produk-admin-grid">
 
 <?php
 
@@ -126,69 +109,66 @@ while($row=mysqli_fetch_assoc($result))
 
 ?>
 
-<tr>
-
-<td>
+<div class="produk-admin-card">
 
 <img
-src="../images/<?php echo $row['image'];?>"
-class="thumb">
+src="../images/<?php echo $row['image'];?>">
 
-</td>
-
-<td>
+<h3>
 
 <?php echo $row['name'];?>
 
-</td>
+</h3>
 
-<td>
-
-Rp <?php echo number_format($row['price']);?>
-
-</td>
-
-<td>
-
-<?php echo $row['stock'];?>
-
-</td>
-
-<td>
+<p>
 
 <?php echo $row['category'];?>
 
-</td>
+</p>
 
-<td>
+<h2>
+
+Rp <?php echo number_format($row['price']);?>
+
+</h2>
+
+<div class="stok">
+
+Stok :
+<?php echo $row['stock'];?>
+
+</div>
+
+<div class="aksi">
 
 <a
-class="edit"
-href="edit_produk.php?id=<?php echo $row['code'];?>">
+href="edit_produk.php?id=<?php echo $row['code'];?>"
+class="edit">
 
-Edit
+<i class="fa fa-edit"></i>
 
 </a>
 
 <a
-class="hapus"
-href="../procces/process_product.php?delete=<?php echo $row['code'];?>">
+href="../procces/process_product.php?delete=<?php echo $row['code'];?>"
+class="hapus">
 
-Hapus
+<i class="fa fa-trash"></i>
 
 </a>
 
-</td>
+</div>
 
-</tr>
+</div>
 
 <?php
 
 }
 
-?>
+?>  
 
-</table>
+</div>
+
 </div>
 
 </div>
