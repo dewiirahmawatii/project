@@ -2,59 +2,85 @@
 
 session_start();
 
-if(!isset($_SESSION['admin']))
+if(!isset($_SESSION['login']))
 {
-header("Location:login.php");
+    header("Location:../login.php");
+    exit;
 }
 
-include 'connect.php';
+include "../connect.php";
+
+$sql="SELECT * FROM orders ORDER BY order_date DESC";
+
+$result=mysqli_query($id,$sql);
 
 ?>
 
 <!DOCTYPE html>
 
 <html>
+
 <head>
 
-<title>Data Pesanan</title>
+<meta charset="UTF-8">
 
-<link rel="stylesheet" href="style.css">
+<title>Kelola Pesanan</title>
+
+<link rel="stylesheet" href="../assets/style.css">
 
 </head>
 
 <body>
 
+<div class="admin">
+
 <div class="sidebar">
 
 <h2>🌸 BEAUTY</h2>
 
-<a href="dashboard.php">Dashboard</a>
+<a href="dashboard.php">
+Dashboard
+</a>
 
-<a href="produk.php">Produk</a>
+<a href="produk.php">
+Produk
+</a>
 
-<a href="kategori.php">Kategori</a>
+<a href="kategori.php">
+Kategori
+</a>
 
-<a href="pesanan.php">Pesanan</a>
+<a class="active">
+Pesanan
+</a>
 
-<a href="logout.php">Logout</a>
+<a href="../logout.php">
+Logout
+</a>
 
 </div>
 
-<div class="main">
+<div class="content">
 
-<h1>📦 Data Pesanan</h1>
+<div class="topbar">
 
-<table>
+<h1>
+
+Kelola Pesanan
+
+</h1>
+
+</div>
+
+<table class="produk-table">
 
 <tr>
 
-<th>ID</th>
+<th>No</th>
 
 <th>Nama</th>
 
-<th>HP</th>
-
-<th>Alamat</th>
+<th>Total</th>
 
 <th>Tanggal</th>
 
@@ -64,39 +90,63 @@ include 'connect.php';
 
 <?php
 
-$order=mysqli_query(
-$id,
-"SELECT * FROM orders
-ORDER BY id DESC"
-);
+$no=1;
 
-while($row=mysqli_fetch_assoc($order))
+while($row=mysqli_fetch_assoc($result))
 {
+
 ?>
 
 <tr>
 
-<td><?php echo $row['id']; ?></td>
+<td>
 
-<td><?php echo $row['customer_name']; ?></td>
+<?php echo $no++;?>
 
-<td><?php echo $row['customer_phone']; ?></td>
+</td>
 
-<td><?php echo $row['customer_address']; ?></td>
+<td>
 
-<td><?php echo $row['order_date']; ?></td>
+<?php echo $row['customer'];?>
 
-<td><?php echo $row['status']; ?></td>
+</td>
+
+<td>
+
+Rp <?php echo number_format($row['total']);?>
+
+</td>
+
+<td>
+
+<?php echo $row['order_date'];?>
+
+</td>
+
+<td>
+
+<span class="badge">
+
+<?php echo $row['status'];?>
+
+</span>
+
+</td>
 
 </tr>
 
 <?php
+
 }
+
 ?>
 
 </table>
 
 </div>
 
+</div>
+
 </body>
+
 </html>

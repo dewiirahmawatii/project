@@ -3006,3 +3006,16 @@ body {
     text-decoration: none;
 
 }
+.badge {
+
+    background: #00b894;
+
+    color: white;
+
+    padding: 8px 18px;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+
+}
