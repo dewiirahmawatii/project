@@ -4,7 +4,7 @@ $id=mysqli_connect(
     "localhost",
     "root",
     "nurcahya13",
-    "beautyskincare"
+    "beautyskincare"                           
 );
 
 if(!$id)
