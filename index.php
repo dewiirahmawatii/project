@@ -50,6 +50,7 @@ if(mysqli_num_rows($cek)>0)
 {
     $jml=mysqli_num_rows(mysqli_query($id,"SELECT * FROM cart"));
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -62,16 +63,17 @@ if(mysqli_num_rows($cek)>0)
 
 <title>Beauty Skincare</title>
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
 <link
-rel="stylesheet"
-href="assets/style.css">
+    rel="stylesheet"
+    href="assets/style.css">
 
 <link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
@@ -83,78 +85,56 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <nav class="navbar">
 
-<div class="logo">
+    <div class="logo">
+        🌸 BEAUTY
+    </div>
 
-🌸 BEAUTY
+    <form
+        action="index.php"
+        method="GET"
+        class="search-form">
 
-</div>
+        <input
+            type="text"
+            name="keyword"
+            id="search"
+            placeholder="Cari skincare favoritmu..."
+            autocomplete="off">
 
-<form
-action="index.php"
-method="GET"
-class="search-form">
+        <button>
+            <i class="fa fa-search"></i>
+        </button>
 
-<input
+    </form>
 
-type="text"
+    <div class="menu">
 
-name="keyword"
+        <a href="index.php">
+            Home
+        </a>
 
-id="search"
+        <a href="#kategori">
+            Kategori
+        </a>
 
-placeholder="Cari skincare favoritmu..."
+        <a href="#produk">
+            Produk
+        </a>
 
-autocomplete="off">
+        <a href="wishlist.php">
+            ❤️ Wishlist
+        </a>
 
-<button>
+        <a href="cart.php">
+            🛒 Keranjang
+            (<?php echo $jml;?>)
+        </a>
 
-<i class="fa fa-search"></i>
+        <a href="login.php">
+            Admin
+        </a>
 
-</button>
-
-</form>
-
-<div class="menu">
-
-<a href="index.php">
-
-Home
-
-</a>
-
-<a href="#kategori">
-
-Kategori
-
-</a>
-
-<a href="#produk">
-
-Produk
-
-</a>
-
-<a href="wishlist.php">
-
-❤️ Wishlist
-
-</a>
-
-<a href="cart.php">
-
-🛒 Keranjang
-
-(<?php echo $jml;?>)
-
-</a>
-
-<a href="login.php">
-
-Admin
-
-</a>
-
-</div>
+    </div>
 
 </nav>
 
@@ -164,36 +144,35 @@ Admin
 
 <section class="hero">
 
-<div class="hero-text">
+    <div class="hero-text">
 
-<h1>
+        <h1>
+            Glow With Confidence ✨
+        </h1>
 
-Glow With Confidence ✨
+        <p>
+            Temukan berbagai skincare terbaik
+            untuk wajah sehat, glowing,
+            and percaya diri setiap hari.
+        </p>
 
-</h1>
+        <a
+            href="#produk"
+            class="btn-shop">
 
-<p>
-Temukan berbagai skincare terbaik
-untuk wajah sehat, glowing,
-and percaya diri setiap hari.
-</p>
-<a
-href="#produk"
-class="btn-shop">
+            Belanja Sekarang
 
-Belanja Sekarang
+        </a>
 
-</a>
+    </div>
 
-</div>
+    <div class="hero-image">
 
-<div class="hero-image">
+        <img
+            src="images/purple/mois.jpeg"
+            alt="Beauty">
 
-<img
-src="images/purple/mois.jpeg"
-alt="Beauty">
-
-</div>
+    </div>
 
 </section>
 
@@ -203,69 +182,57 @@ alt="Beauty">
 
 <section class="flash">
 
-<h2>
+    <h2>
+        🔥 FLASH SALE
+    </h2>
 
-🔥 FLASH SALE
+    <div id="countdown">
+        02:00:00
+    </div>
 
-</h2>
+    <div class="flash-grid">
 
-<div id="countdown">
+        <div class="flash-card">
 
-02:00:00
+            💖
 
-</div>
+            <h3>
+                Diskon 50%
+            </h3>
 
-<div class="flash-grid">
+        </div>
 
-<div class="flash-card">
+        <div class="flash-card">
 
-💖
+            ✨
 
-<h3>
+            <h3>
+                Buy 1 Get 1
+            </h3>
 
-Diskon 50%
+        </div>
 
-</h3>
+        <div class="flash-card">
 
-</div>
+            🚚
 
-<div class="flash-card">
+            <h3>
+                Gratis Ongkir
+            </h3>
 
-✨
+        </div>
 
-<h3>
+        <div class="flash-card">
 
-Buy 1 Get 1
+            ⭐
 
-</h3>
+            <h3>
+                Best Seller
+            </h3>
 
-</div>
+        </div>
 
-<div class="flash-card">
-
-🚚
-
-<h3>
-
-Gratis Ongkir
-
-</h3>
-
-</div>
-
-<div class="flash-card">
-
-⭐
-
-<h3>
-
-Best Seller
-
-</h3>
-
-</div>
-
-</div>
+    </div>
 
 </section>
 
@@ -275,35 +242,41 @@ Best Seller
 
 <section class="banner-section">
 
-<div class="banner-card pink">
+    <div class="banner-card pink">
 
-<h2>✨ Brightening Series</h2>
+        <h2>✨ Brightening Series</h2>
 
-<p>Dapatkan diskon hingga 50%</p>
+        <p>Dapatkan diskon hingga 50%</p>
 
-<a href="#produk">Belanja Sekarang</a>
+        <a href="#produk">
+            Belanja Sekarang
+        </a>
 
-</div>
+    </div>
 
-<div class="banner-card purple">
+    <div class="banner-card purple">
 
-<h2>💖 Best Seller</h2>
+        <h2>💖 Best Seller</h2>
 
-<p>Produk favorit pelanggan</p>
+        <p>Produk favorit pelanggan</p>
 
-<a href="#produk">Lihat Produk</a>
+        <a href="#produk">
+            Lihat Produk
+        </a>
 
-</div>
+    </div>
 
-<div class="banner-card orange">
+    <div class="banner-card orange">
 
-<h2>🚚 Gratis Ongkir</h2>
+        <h2>🚚 Gratis Ongkir</h2>
 
-<p>Minimal belanja Rp100.000</p>
+        <p>Minimal belanja Rp100.000</p>
 
-<a href="#produk">Belanja</a>
+        <a href="#produk">
+            Belanja
+        </a>
 
-</div>
+    </div>
 
 </section>
 
@@ -313,333 +286,278 @@ Best Seller
 
 <section id="kategori">
 
-<div class="title">
+    <div class="title">
 
-<h2>
+        <h2>
+            🏷️ Kategori Produk
+        </h2>
 
-🏷️ Kategori Produk
+        <p>
+            Pilih kategori skincare favoritmu
+        </p>
 
-</h2>
+    </div>
 
-<p>
+    <div class="kategori-grid">
 
-Pilih kategori skincare favoritmu
+        <?php
 
-</p>
+        $kategori=mysqli_query($id,"SELECT * FROM category");
 
-</div>
+        while($k=mysqli_fetch_assoc($kategori))
+        {
 
-<div class="kategori-grid">
+        ?>
 
-<?php
+        <a
+            href="index.php?category=<?php echo $k['code'];?>"
+            class="kategori-card">
 
-$kategori=mysqli_query($id,"SELECT * FROM category");
+            <div class="icon">
+                🧴
+            </div>
 
-while($k=mysqli_fetch_assoc($kategori))
-{
+            <h3>
 
-?>
+                <?php
+                echo $k['category'];
+                ?>
 
-<a
-href="index.php?category=<?php echo $k['code'];?>"
-class="kategori-card">
+            </h3>
 
-<div class="icon">
+        </a>
 
-🧴
+        <?php
 
-</div>
+        }
 
-<h3>
+        ?>
 
-<?php
-
-echo $k['category'];
-
-?>
-
-</h3>
-
-</a>
-
-<?php
-
-}
-
-?>
-
-</div>
+    </div>
 
 </section>
 
 <!-- ===========================
         PRODUK
 =========================== -->
-
 <section id="produk">
+    <div class="title">
+        <h2>
+            🔥 Produk Terlaris
+        </h2>
 
-<div class="title">
+        <p>
+            Skincare pilihan dengan kualitas terbaik
+        </p>
+    </div>
+    <div
+        class="produk-grid"
+        id="result">
+        <?php
+        while($row=mysqli_fetch_assoc($result))
+        {
+        ?>
+        <div class="produk-card">
 
-<h2>
+            <div class="produk-image">
 
-🔥 Produk Terlaris
+                <img
+                    src="images/<?php echo $row['image'];?>"
+                    alt="<?php echo $row['name'];?>">
 
-</h2>
+                <span class="badge">
+                    BEST
+                </span>
 
-<p>
+            </div>
+            <div class="produk-content">
+                <h3>
 
-Skincare pilihan dengan kualitas terbaik
+                    <?php
+                    echo $row['name'];
+                    ?>
 
-</p>
+                </h3>
+                <p>
 
-</div>
+                    <?php
+                    echo $row['description'];
+                    ?>
 
-<div
-class="produk-grid"
-id="result">
+                </p>
+                <div class="harga">
 
-<?php
+                    Rp <?php echo number_format($row['price']);?>
 
-while($row=mysqli_fetch_assoc($result))
-{
+                </div>
+                <div class="stok">
 
-?>
+                    Stok :
 
-<div class="produk-card">
+                    <b>
 
-<div class="produk-image">
+                        <?php echo $row['stock'];?>
 
-<img
-src="images/<?php echo $row['image'];?>"
-alt="<?php echo $row['name'];?>">
+                    </b>
+                </div>
+                <div class="rating">
 
-<span class="badge">
+                    ⭐⭐⭐⭐⭐
 
-BEST
+                    <span>
+                        4.9
+                    </span>
+                </div>
+                <div class="produk-button">
+                    <a
+                        href="cart.php?add=<?php echo $row['code'];?>"
+                        class="btn-cart">
 
-</span>
-
-</div>
-
-<div class="produk-content">
-
-<h3>
-
-<?php
-
-echo $row['name'];
-
-?>
-
-</h3>
-
-<p>
-
-<?php
-
-echo $row['description'];
-
-?>
-
-</p>
-
-<div class="harga">
-
-Rp <?php echo number_format($row['price']);?>
-
-</div>
-
-<div class="stok">
-
-Stok :
-
-<b>
-
-<?php echo $row['stock'];?>
-
-</b>
-
-</div>
-
-<div class="rating">
-
-⭐⭐⭐⭐⭐
-
-<span>
-
-4.9
-
-</span>
-
-</div>
-
-<div class="produk-button">
-
-<a
-href="cart.php?add=<?php echo $row['code'];?>"
-class="btn-cart">
-
-🛒 Keranjang
-
-</a>
-
-<a
-href="wishlist.php?add=<?php echo $row['code'];?>"
-class="btn-love">
-
-❤
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<?php
-
-}
-
-?>
-
-</div>
-
+                        🛒 Keranjang
+                    </a>
+                    <a
+                        href="wishlist.php?add=<?php echo $row['code'];?>"
+                        class="btn-love">
+                        ❤
+                    </a>
+                </div>
+            </div>
+        </div>
+        <?php
+        }
+        ?>
+    </div>
 </section>
-
 <!-- ===========================
         BAGIAN 3 LANJUT...
 =========================== -->
+
 <!-- ===========================
         KEUNGGULAN TOKO
 =========================== -->
 
 <section class="why-us">
+    <div class="title">
+        <h2>
+            Mengapa Memilih Beauty Skincare?
+        </h2>
+        <p>
+            Kami menyediakan produk skincare original dengan kualitas terbaik.
+        </p>
+    </div>
+    <div class="why-grid">
+        <div class="why-card">
+            <i class="fa-solid fa-truck-fast"></i>
+            <h3>
+                Gratis Ongkir
+            </h3>
+            <p>
+                Gratis ongkir untuk pembelian minimal Rp100.000.
+            </p>
 
-<div class="title">
+        </div>
+        <div class="why-card">
+            <i class="fa-solid fa-shield-heart"></i>
+            <h3>
+                100% Original
+            </h3>
+            <p>
+                Semua produk dijamin asli dan bergaransi.
+            </p>
+        </div>
+        <div class="why-card">
+            <i class="fa-solid fa-headset"></i>
+            <h3>
+                Customer Service
+            </h3>
+            <p>
+                Siap membantu selama 24 jam.
+            </p>
 
-<h2>Mengapa Memilih Beauty Skincare?</h2>
-
-<p>Kami menyediakan produk skincare original dengan kualitas terbaik.</p>
-
-</div>
-
-<div class="why-grid">
-
-<div class="why-card">
-
-<i class="fa-solid fa-truck-fast"></i>
-
-<h3>Gratis Ongkir</h3>
-
-<p>Gratis ongkir untuk pembelian minimal Rp100.000.</p>
-
-</div>
-
-<div class="why-card">
-
-<i class="fa-solid fa-shield-heart"></i>
-
-<h3>100% Original</h3>
-
-<p>Semua produk dijamin asli dan bergaransi.</p>
-
-</div>
-
-<div class="why-card">
-
-<i class="fa-solid fa-headset"></i>
-
-<h3>Customer Service</h3>
-
-<p>Siap membantu selama 24 jam.</p>
-
-</div>
-
-<div class="why-card">
-
-<i class="fa-solid fa-credit-card"></i>
-
-<h3>Pembayaran Aman</h3>
-
-<p>Mendukung berbagai metode pembayaran.</p>
-
-</div>
-
-</div>
-
+        </div>
+        <div class="why-card">
+            <i class="fa-solid fa-credit-card"></i>
+            <h3>
+                Pembayaran Aman
+            </h3>
+            <p>
+                Mendukung berbagai metode pembayaran.
+            </p>
+        </div>
+    </div>
 </section>
-
 <!-- ===========================
         FOOTER
 =========================== -->
 
 <footer class="footer">
+    <div class="footer-grid">
+        <div>
+            <h2>
+                🌸 BEAUTY SKINCARE
+            </h2>
+            <p>
+                Glow With Confidence.
+                Produk skincare terbaik untuk semua jenis kulit.
+            </p>
+        </div>
+        <div>
+            <h3>
+                Menu
+            </h3>
+            <a href="index.php">
+                Home
+            </a>
 
-<div class="footer-grid">
+            <a href="#kategori">
+                Kategori
+            </a>
 
-<div>
+            <a href="#produk">
+                Produk
+            </a>
 
-<h2>🌸 BEAUTY SKINCARE</h2>
+        </div>
 
-<p>
+        <div>
 
-Glow With Confidence.
+            <h3>
+                Kontak
+            </h3>
 
-Produk skincare terbaik untuk semua jenis kulit.
+            <p>📍 Indonesia</p>
 
-</p>
+            <p>📞 0812-3456-7890</p>
 
-</div>
+            <p>✉ beauty@gmail.com</p>
 
-<div>
+        </div>
 
-<h3>Menu</h3>
+        <div>
 
-<a href="index.php">Home</a>
+            <h3>
+                Follow Us
+            </h3>
 
-<a href="#kategori">Kategori</a>
+            <i class="fa-brands fa-instagram fa-2x"></i>
 
-<a href="#produk">Produk</a>
+            <i class="fa-brands fa-facebook fa-2x"></i>
 
-</div>
+            <i class="fa-brands fa-tiktok fa-2x"></i>
 
-<div>
+        </div>
 
-<h3>Kontak</h3>
+    </div>
 
-<p>📍 Indonesia</p>
+    <hr>
 
-<p>📞 0812-3456-7890</p>
+    <p class="copyright">
 
-<p>✉ beauty@gmail.com</p>
+        © 2026 Beauty Skincare. All Rights Reserved.
 
-</div>
-
-<div>
-
-<h3>Follow Us</h3>
-
-<i class="fa-brands fa-instagram fa-2x"></i>
-
-<i class="fa-brands fa-facebook fa-2x"></i>
-
-<i class="fa-brands fa-tiktok fa-2x"></i>
-
-</div>
-
-</div>
-
-<hr>
-
-<p class="copyright">
-
-© 2026 Beauty Skincare. All Rights Reserved.
-
-</p>
+    </p>
 
 </footer>
-
 <script>
 
 /* ===========================
@@ -650,21 +568,21 @@ const search=document.getElementById("search");
 
 if(search){
 
-search.addEventListener("keyup",function(){
+    search.addEventListener("keyup",function(){
 
-let keyword=this.value;
+        let keyword=this.value;
 
-fetch("search.php?keyword="+keyword)
+        fetch("search.php?keyword="+keyword)
 
-.then(res=>res.text())
+        .then(res=>res.text())
 
-.then(data=>{
+        .then(data=>{
 
-document.getElementById("result").innerHTML=data;
+            document.getElementById("result").innerHTML=data;
 
-});
+        });
 
-});
+    });
 
 }
 
@@ -676,25 +594,25 @@ let waktu=7200;
 
 setInterval(function(){
 
-let jam=Math.floor(waktu/3600);
+    let jam=Math.floor(waktu/3600);
 
-let menit=Math.floor((waktu%3600)/60);
+    let menit=Math.floor((waktu%3600)/60);
 
-let detik=waktu%60;
+    let detik=waktu%60;
 
-document.getElementById("countdown").innerHTML=
+    document.getElementById("countdown").innerHTML=
 
-String(jam).padStart(2,'0')+":"
+    String(jam).padStart(2,'0')+":"
 
-+String(menit).padStart(2,'0')+":"
+    +String(menit).padStart(2,'0')+":"
 
-+String(detik).padStart(2,'0');
+    +String(detik).padStart(2,'0');
 
-if(waktu>0){
+    if(waktu>0){
 
-waktu--;
+        waktu--;
 
-}
+    }
 
 },1000);
 
@@ -706,17 +624,17 @@ const cards=document.querySelectorAll(".produk-card");
 
 cards.forEach(function(card){
 
-card.addEventListener("mouseenter",function(){
+    card.addEventListener("mouseenter",function(){
 
-card.style.transform="translateY(-10px)";
+        card.style.transform="translateY(-10px)";
 
-});
+    });
 
-card.addEventListener("mouseleave",function(){
+    card.addEventListener("mouseleave",function(){
 
-card.style.transform="translateY(0px)";
+        card.style.transform="translateY(0px)";
 
-});
+    });
 
 });
 
