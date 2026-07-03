@@ -67,7 +67,7 @@ INNER JOIN product
 ON cart.product_code=product.code
 ";
 
-$result=mysqli_query($id,$sql);
+$result=mysqli_query($connect,$sql);
 
 while($row=mysqli_fetch_assoc($result))
 {
