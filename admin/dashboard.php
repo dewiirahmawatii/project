@@ -14,11 +14,11 @@ include "../connect.php";
 =========================== */
 
 $product = mysqli_fetch_row(
-    mysqli_query($connect, "SELECT COUNT(*) FROM produk")
+    mysqli_query($connect, "SELECT COUNT(*) FROM product")
 );
 
-$kategori = mysqli_fetch_row(
-    mysqli_query($connect, "SELECT COUNT(*) FROM kategori")
+$category = mysqli_fetch_row(
+    mysqli_query($connect, "SELECT COUNT(*) FROM category")
 );
 
 $pesanan = mysqli_fetch_row(
@@ -199,11 +199,11 @@ src="https://ui-avatars.com/api/?background=ff5fa2&color=fff&name=<?= urlencode(
 
 <div>
 
-<h4>Total Kategori</h4>
+<h4>Total category</h4>
 
 <h1>
 
-<?php echo $kategori[0];?>
+<?php echo $category[0];?>
 
 </h1>
 
@@ -437,11 +437,11 @@ Buka →
 
 <div class="info-item">
 
-<span>Kategori</span>
+<span>category</span>
 
 <b>
 
-<?php echo $kategori[0]; ?>
+<?php echo $category[0]; ?>
 
 </b>
 

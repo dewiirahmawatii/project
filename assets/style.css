@@ -692,7 +692,7 @@ table td {
   text-align: center;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
   transition: 0.3s;
-  font-size: 45px;
+  font-size: 20px;
 }
 
 .menu-box:hover {
@@ -2399,3 +2399,211 @@ font-size:38px;
       background: #5848c2;
   
     }
+/* ===========================
+   STATUS PESANAN
+=========================== */
+
+.badge {
+
+  padding: 8px 15px;
+
+  border-radius: 20px;
+
+  font-size: 14px;
+
+  font-weight: bold;
+
+  color: white;
+
+  display: inline-block;
+
+}
+
+.warning {
+
+  background: #f39c12;
+
+}
+
+.primary {
+
+  background: #3498db;
+
+}
+
+.info {
+
+  background: #9b59b6;
+
+}
+
+.success {
+
+  background: #2ecc71;
+
+}
+
+.danger {
+
+  background: #e74c3c;
+
+}
+/* ===========================
+   DETAIL PESANAN
+=========================== */
+
+.detail-card {
+
+  background: #fff;
+
+  padding: 30px;
+
+  border-radius: 15px;
+
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .1);
+
+  margin-top: 20px;
+
+}
+
+.detail-item {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  padding: 15px 0;
+
+  border-bottom: 1px solid #eee;
+
+}
+
+.detail-item label {
+
+  font-weight: bold;
+
+  color: #555;
+
+}
+
+.status-form {
+
+  margin-top: 30px;
+
+}
+
+.status-select {
+
+  width: 100%;
+
+  padding: 12px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 10px;
+
+  margin-top: 10px;
+
+  margin-bottom: 20px;
+
+  font-size: 16px;
+
+}
+
+.button-group {
+
+  display: flex;
+
+  gap: 15px;
+
+}
+
+.btn-save {
+
+  background: #ff4d8d;
+
+  color: #fff;
+
+  padding: 12px 25px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-weight: bold;
+
+}
+
+.btn-save:hover {
+
+  background: #e63b7a;
+
+}
+
+.btn-back {
+
+  background: #6c757d;
+
+  color: #fff;
+
+  padding: 12px 25px;
+
+  border-radius: 10px;
+
+  text-decoration: none;
+
+  font-weight: bold;
+
+}
+
+.btn-back:hover {
+
+  background: #555;
+
+}
+
+.badge {
+
+  padding: 8px 15px;
+
+  border-radius: 20px;
+
+  color: #fff;
+
+  font-size: 14px;
+
+  font-weight: bold;
+
+}
+
+.warning {
+
+  background: #f39c12;
+
+}
+
+.primary {
+
+  background: #3498db;
+
+}
+
+.info {
+
+  background: #9b59b6;
+
+}
+
+.success {
+
+  background: #2ecc71;
+
+}
+
+.danger {
+
+  background: #e74c3c;
+
+}

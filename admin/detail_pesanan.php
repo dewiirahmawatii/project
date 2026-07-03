@@ -16,22 +16,34 @@ if(!isset($_GET['id']))
     exit;
 }
 
-$id_order=$_GET['id'];
+$id_order = $_GET['id'];
 
-$sql=mysqli_query(
-$id,
+$order = mysqli_query(
+$connect,
 "SELECT *
 FROM orders
 WHERE id='$id_order'"
 );
 
-$data=mysqli_fetch_assoc($sql);
+$data = mysqli_fetch_assoc($order);
 
 if(!$data)
 {
-    echo "Pesanan tidak ditemukan";
+    echo "Pesanan tidak ditemukan!";
     exit;
 }
+
+$detail = mysqli_query(
+$connect,
+"SELECT
+order_detail.*,
+product.name,
+product.price
+FROM order_detail
+JOIN product
+ON order_detail.product_code = product.code
+WHERE order_detail.order_id='$id_order'"
+);
 
 ?>
 
@@ -43,9 +55,13 @@ if(!$data)
 
 <meta charset="UTF-8">
 
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>Detail Pesanan</title>
 
-<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet"
+href="../assets/style.css">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -56,55 +72,31 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <div class="admin">
 
-<!-- SIDEBAR -->
-
 <div class="sidebar">
 
 <h2>🌸 BEAUTY</h2>
 
 <a href="dashboard.php">
-
-<i class="fa-solid fa-house"></i>
-
-Dashboard
-
+🏠 Dashboard
 </a>
 
 <a href="produk.php">
-
-<i class="fa-solid fa-box"></i>
-
-Produk
-
+🧴 Produk
 </a>
 
 <a href="kategori.php">
-
-<i class="fa-solid fa-tags"></i>
-
-Kategori
-
+🏷️ Kategori
 </a>
 
 <a href="pesanan.php" class="active">
-
-<i class="fa-solid fa-cart-shopping"></i>
-
-Pesanan
-
+📦 Pesanan
 </a>
 
 <a href="../logout.php">
-
-<i class="fa-solid fa-right-from-bracket"></i>
-
-Logout
-
+🚪 Logout
 </a>
 
 </div>
-
-<!-- CONTENT -->
 
 <div class="content">
 
@@ -122,7 +114,7 @@ Logout
 
 <h2>
 
-Informasi Pelanggan
+👤 Informasi Pelanggan
 
 </h2>
 
@@ -132,7 +124,7 @@ Informasi Pelanggan
 
 <span>
 
-<?php echo $data['customer_name'];?>
+<?php echo $data['customer_name']; ?>
 
 </span>
 
@@ -144,7 +136,7 @@ Informasi Pelanggan
 
 <span>
 
-<?php echo $data['customer_phone'];?>
+<?php echo $data['customer_phone']; ?>
 
 </span>
 
@@ -156,7 +148,7 @@ Informasi Pelanggan
 
 <span>
 
-<?php echo $data['customer_address'];?>
+<?php echo $data['customer_address']; ?>
 
 </span>
 
@@ -168,7 +160,7 @@ Informasi Pelanggan
 
 <span>
 
-<?php echo $data['order_date'];?>
+<?php echo $data['order_date']; ?>
 
 </span>
 
@@ -178,22 +170,140 @@ Informasi Pelanggan
 
 <label>Status</label>
 
-<span class="badge">
+<span>
 
-<?php echo $data['status'];?>
+<?php
+
+$status=$data['status'];
+
+if($status=="Menunggu")
+{
+echo "<span class='badge warning'>🟡 Menunggu</span>";
+}
+elseif($status=="Diproses")
+{
+echo "<span class='badge primary'>🔵 Diproses</span>";
+}
+elseif($status=="Dikirim")
+{
+echo "<span class='badge info'>🟣 Dikirim</span>";
+}
+elseif($status=="Selesai")
+{
+echo "<span class='badge success'>🟢 Selesai</span>";
+}
+else
+{
+echo "<span class='badge danger'>🔴 Dibatalkan</span>";
+}
+
+?>
 
 </span>
 
 </div>
+
+<hr>
+
+<h2>
+
+🛒 Detail Produk
+
+</h2>
+
+<table class="produk-table">
+
+<tr>
+
+<th>Produk</th>
+
+<th>Harga</th>
+
+<th>Qty</th>
+
+<th>Subtotal</th>
+
+</tr>
+<?php
+
+$total=0;
+
+while($item=mysqli_fetch_assoc($detail))
+{
+
+$subtotal=$item['price']*$item['qty'];
+
+$total+=$subtotal;
+
+?>
+
+<tr>
+
+<td>
+
+<?php echo $item['name']; ?>
+
+</td>
+
+<td>
+
+Rp <?php echo number_format($item['price']); ?>
+
+</td>
+
+<td>
+
+<?php echo $item['qty']; ?>
+
+</td>
+
+<td>
+
+Rp <?php echo number_format($subtotal); ?>
+
+</td>
+
+</tr>
+
+<?php
+
+}
+
+?>
+
+<tr>
+
+<td colspan="3" align="right">
+
+<b>Total Belanja</b>
+
+</td>
+
+<td>
+
+<b>
+
+Rp <?php echo number_format($total); ?>
+
+</b>
+
+</td>
+
+</tr>
+
+</table>
+
+<br>
+
 <form
-action="../process_order.php"
+action="../procces/process_order.php"
 method="POST"
 class="status-form">
 
 <input
 type="hidden"
 name="id"
-value="<?php echo $data['id'];?>">
+value="<?php echo $data['id']; ?>">
 
 <h2>
 
@@ -205,40 +315,35 @@ value="<?php echo $data['id'];?>">
 name="status"
 class="status-select">
 
-<option
-value="Menunggu"
+<option value="Menunggu"
 <?php if($data['status']=="Menunggu") echo "selected"; ?>>
 
 🟡 Menunggu
 
 </option>
 
-<option
-value="Diproses"
+<option value="Diproses"
 <?php if($data['status']=="Diproses") echo "selected"; ?>>
 
 🔵 Diproses
 
 </option>
 
-<option
-value="Dikirim"
+<option value="Dikirim"
 <?php if($data['status']=="Dikirim") echo "selected"; ?>>
 
 🟣 Dikirim
 
 </option>
 
-<option
-value="Selesai"
+<option value="Selesai"
 <?php if($data['status']=="Selesai") echo "selected"; ?>>
 
 🟢 Selesai
 
 </option>
 
-<option
-value="Dibatalkan"
+<option value="Dibatalkan"
 <?php if($data['status']=="Dibatalkan") echo "selected"; ?>>
 
 🔴 Dibatalkan
@@ -269,6 +374,8 @@ class="btn-back">
 </div>
 
 </form>
+
+</div>
 
 </div>
 
