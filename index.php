@@ -35,20 +35,17 @@ else
     ORDER BY code DESC
     ";
 }
-
-$result=mysqli_query($id,$sql);
-
+$result = mysqli_query($connect, $sql);
 /* ===========================
    JUMLAH KERANJANG
 =========================== */
-
 $jml=0;
 
-$cek=mysqli_query($id,"SHOW TABLES LIKE 'cart'");
+$cek = mysqli_query($connect, "SHOW TABLES LIKE 'cart'");
 
 if(mysqli_num_rows($cek)>0)
 {
-    $jml=mysqli_num_rows(mysqli_query($id,"SELECT * FROM cart"));
+    $jml = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM cart"));
 }
 
 ?>
@@ -182,10 +179,6 @@ if(mysqli_num_rows($cek)>0)
 
 <section class="flash">
 
-<<<<<<< HEAD
-<h2>
-🔥 FLASH SALE
-=======
     <h2>
         🔥 FLASH SALE
     </h2>
@@ -193,7 +186,6 @@ if(mysqli_num_rows($cek)>0)
     <div id="countdown">
         02:00:00
     </div>
->>>>>>> 9eba5ac36175b2dd27735c5cb24ce3e668564c1a
 
     <div class="flash-grid">
 
@@ -306,37 +298,26 @@ if(mysqli_num_rows($cek)>0)
     <div class="kategori-grid">
 
         <?php
+$kategori = mysqli_query($connect, "SELECT * FROM category");
 
-        $kategori=mysqli_query($id,"SELECT * FROM category");
+while ($k = mysqli_fetch_assoc($kategori)) {
+?>
 
-        while($k=mysqli_fetch_assoc($kategori))
-        {
+<a href="index.php?category=<?php echo $k['code']; ?>" class="kategori-card">
 
-        ?>
+    <div class="icon">
+        🧴
+    </div>
 
-        <a
-            href="index.php?category=<?php echo $k['code'];?>"
-            class="kategori-card">
+    <h3>
+        <?php echo $k['category']; ?>
+    </h3>
 
-            <div class="icon">
-                🧴
-            </div>
+</a>
 
-            <h3>
-
-                <?php
-                echo $k['category'];
-                ?>
-
-            </h3>
-
-        </a>
-
-        <?php
-
-        }
-
-        ?>
+<?php
+}
+?>
 
     </div>
 

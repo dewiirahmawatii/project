@@ -1,152 +1,99 @@
 <?php
-
 session_start();
 
-if(!isset($_SESSION['login']))
-{
-    header("Location:../login.php");
+if (!isset($_SESSION['login'])) {
+    header("Location: ../login.php");
     exit;
 }
 
 include "../connect.php";
 
-$sql="SELECT * FROM orders ORDER BY order_date DESC";
+$sql = "SELECT * FROM orders ORDER BY order_date DESC";
+$result = mysqli_query($connect, $sql);
 
-$result=mysqli_query($id,$sql);
-
+if (!$result) {
+    die("Query Error : " . mysqli_error($connect));
+}
 ?>
 
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
-<meta charset="UTF-8">
-
-<title>Kelola Pesanan</title>
-
-<link rel="stylesheet" href="../assets/style.css">
-
+    <meta charset="UTF-8">
+    <title>Kelola Pesanan</title>
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
-
 <body>
 
 <div class="admin">
 
-<div class="sidebar">
+    <div class="sidebar">
+        <h2>🌸 BEAUTY</h2>
 
-<h2>🌸 BEAUTY</h2>
+        <a href="dashboard.php">Dashboard</a>
+        <a href="produk.php">Produk</a>
+        <a href="kategori.php">Kategori</a>
+        <a href="pesanan.php" class="active">Pesanan</a>
+        <a href="../logout.php">Logout</a>
+    </div>
 
-<a href="dashboard.php">
-Dashboard
-</a>
+    <div class="content">
 
-<a href="produk.php">
-Produk
-</a>
+        <div class="topbar">
+            <h1>Kelola Pesanan</h1>
+        </div>
 
-<a href="kategori.php">
-Kategori
-</a>
+        <table class="produk-table">
 
-<a class="active">
-Pesanan
-</a>
+            <tr>
+                <th>No</th>
+                <th>Nama Customer</th>
+                <th>No HP</th>
+                <th>Total</th>
+                <th>Tanggal</th>
+                <th>Status</th>
+                <th>Aksi</th>
+            </tr>
 
-<a href="../logout.php">
-Logout
-</a>
+            <?php
+            $no = 1;
 
-</div>
+            while ($row = mysqli_fetch_assoc($result)) {
+            ?>
 
-<div class="content">
+            <tr>
 
-<div class="topbar">
+                <td><?= $no++; ?></td>
 
-<h1>
+                <td><?= $row['customer_name']; ?></td>
 
-Kelola Pesanan
+                <td><?= $row['customer_phone']; ?></td>
 
-</h1>
+                <td>Rp <?= number_format($row['total'], 0, ',', '.'); ?></td>
 
-</div>
+                <td><?= $row['order_date']; ?></td>
 
-<table class="produk-table">
+                <td>
+                    <span class="badge">
+                        <?= $row['status']; ?>
+                    </span>
+                </td>
 
-<tr>
+                <td>
+                    <a href="detail_pesanan.php?id=<?= $row['id']; ?>" class="btn-detail">
+                        👁 Detail
+                    </a>
+                </td>
 
-<th>No</th>
+            </tr>
 
-<th>Nama</th>
+            <?php } ?>
 
-<th>Total</th>
+        </table>
 
-<th>Tanggal</th>
-
-<th>Status</th>
-
-</tr>
-
-<?php
-
-$no=1;
-
-while($row=mysqli_fetch_assoc($result))
-{
-
-?>
-
-<tr>
-
-<td>
-
-<?php echo $no++;?>
-
-</td>
-
-<td>
-
-<?php echo $row['customer_name'];?>
-
-</td>
-
-<td>
-
-Rp <?php echo number_format($row['total']);?>
-
-</td>
-
-<td>
-
-<?php echo $row['order_date'];?>
-
-</td>
-
-<td>
-
-<span class="badge">
-
-<?php echo $row['status'];?>
-
-</span>
-
-</td>
-
-</tr>
-
-<?php
-
-}
-
-?>
-
-</table>
-
-</div>
+    </div>
 
 </div>
 
 </body>
-
 </html>
