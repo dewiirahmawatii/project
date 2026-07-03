@@ -56,7 +56,7 @@ dalam satu dashboard modern.
 
 </p>
 
-<img src="images/serum.jpg">
+<img src="images/purple/serum.jpeg">
 
 </div>
 
