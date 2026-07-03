@@ -2607,3 +2607,137 @@ font-size:38px;
   background: #e74c3c;
 
 }
+.btn-add {
+  background: #22c55e;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn-add:hover {
+  background: #16a34a;
+}
+
+.btn-edit {
+  background: #3b82f6;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.btn-back {
+  background: #888;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  margin-left: 10px;
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.btn-add {
+  background: #ff4f87;
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.btn-add:hover {
+  background: #ff2f73;
+}
+
+.aksi {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-edit {
+  background: #3498db;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.hapus {
+  background: #e74c3c;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.btn-edit:hover {
+  background: #2980b9;
+}
+
+.hapus:hover {
+  background: #c0392b;
+}
+.btn-group{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+}
+
+.btn-save{
+    flex:1;
+    background:#ff4f87;
+    color:white;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    text-align:center;
+}
+
+.btn-back{
+    flex:1;
+    background:#888;
+    color:white;
+    padding:12px;
+    border-radius:10px;
+    text-decoration:none;
+    text-align:center;
+    font-weight:bold;
+}
+
+.btn-save:hover{
+    background:#ff2f73;
+}
+
+.btn-back:hover{
+    background:#666;
+}
+.badge {
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: white;
+  font-size: 12px;
+  display: inline-block;
+}
+
+.badge.menunggu {
+  background: #ff4d4d;
+}
+
+.badge.diproses {
+  background: #ffa500;
+}
+
+.badge.selesai {
+  background: #2ecc71;
+}

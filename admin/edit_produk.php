@@ -14,11 +14,11 @@ $code=$_GET['id'];
 
 $sql="SELECT * FROM product WHERE code='$code'";
 
-$result=mysqli_query($id,$sql);
+$result=mysqli_query($connect,$sql);
 
 $data=mysqli_fetch_assoc($result);
 
-$kategori=mysqli_query($id,"SELECT * FROM category");
+$kategori=mysqli_query($connect,"SELECT * FROM category");
 
 ?>
 

@@ -9,7 +9,7 @@ $product=$_GET['add'];
 
 mysqli_query(
 
-$id,
+$connect,
 
 "INSERT INTO wishlist
 (product_code)

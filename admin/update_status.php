@@ -1,23 +1,17 @@
 <?php
+include "../connect.php";
 
-include 'connect.php';
+if (isset($_GET['id']) && isset($_GET['status'])) {
 
-$id_order=$_GET['id'];
+    $id = $_GET['id'];
+    $status = $_GET['status'];
 
-$status=$_GET['status'];
+    mysqli_query($connect, "
+        UPDATE orders 
+        SET status='$status' 
+        WHERE id='$id'
+    ");
 
-mysqli_query(
-
-$id,
-
-"UPDATE orders
-SET status='$status'
-WHERE id='$id_order'"
-
-);
-
-header(
-"Location:pesanan.php"
-);
-
+    header("Location: pesanan.php");
+}
 ?>
