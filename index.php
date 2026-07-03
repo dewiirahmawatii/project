@@ -182,6 +182,10 @@ if(mysqli_num_rows($cek)>0)
 
 <section class="flash">
 
+<<<<<<< HEAD
+<h2>
+🔥 FLASH SALE
+=======
     <h2>
         🔥 FLASH SALE
     </h2>
@@ -189,6 +193,7 @@ if(mysqli_num_rows($cek)>0)
     <div id="countdown">
         02:00:00
     </div>
+>>>>>>> 9eba5ac36175b2dd27735c5cb24ce3e668564c1a
 
     <div class="flash-grid">
 
