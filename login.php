@@ -2,27 +2,30 @@
 session_start();
 include "connect.php";
 
-if(isset($_POST['login']))
-{
-    $username=$_POST['username'];
-    $password=$_POST['password'];
+if (isset($_POST['login'])) {
 
-    $sql="SELECT * FROM admin
-          WHERE username='$username'
-          AND password='$password'";
+    $username = mysqli_real_escape_string($connect, $_POST['username']);
+    $password = mysqli_real_escape_string($connect, $_POST['password']);
 
-    $result=mysqli_query($id,$sql);
+    $query = mysqli_query(
+        $connect,
+        "SELECT * FROM admin WHERE username='$username' AND password='$password'"
+    );
 
-    if(mysqli_num_rows($result)>0)
-    {
-        $_SESSION['login']=true;
-        $_SESSION['username']=$username;
+    if (mysqli_num_rows($query) > 0) {
 
-        header("Location:admin/dashboard.php");
-    }
-    else
-    {
-        $error="Username atau Password Salah!";
+        $admin = mysqli_fetch_assoc($query);
+
+        $_SESSION['login'] = true;
+        $_SESSION['username'] = $admin['username'];
+
+        header("Location: admin/dashboard.php");
+        exit;
+
+    } else {
+
+        $error = "Username atau Password salah!";
+
     }
 }
 ?>

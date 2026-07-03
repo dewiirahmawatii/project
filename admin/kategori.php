@@ -1,10 +1,8 @@
 <?php
-
 session_start();
 
-if(!isset($_SESSION['login']))
-{
-    header("Location:../login.php");
+if (!isset($_SESSION['login'])) {
+    header("Location: ../login.php");
     exit;
 }
 
@@ -20,7 +18,7 @@ ON category.code=product.category_code
 GROUP BY category.code
 ORDER BY category.category ASC";
 
-$result=mysqli_query($id,$sql);
+$result=mysqli_query($connect,$sql);
 
 ?>
 

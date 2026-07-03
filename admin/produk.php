@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['login'])) {
-    header("Location:../login.php");
+    header("Location: ../login.php");
     exit;
 }
 
@@ -20,7 +20,7 @@ $sql = "SELECT
         LEFT JOIN category
         ON product.category_code = category.code";
 
-$result = mysqli_query($id, $sql);
+$result = mysqli_query($connect, $sql);
 ?>
 
 <!DOCTYPE html>

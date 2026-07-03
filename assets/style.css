@@ -2378,4 +2378,24 @@ font-size:38px;
       }
 
   }
+    .btn-detail {
   
+      background: #6c5ce7;
+  
+      color: white;
+  
+      padding: 8px 16px;
+  
+      border-radius: 8px;
+  
+      text-decoration: none;
+  
+      transition: .3s;
+  
+    }
+  
+    .btn-detail:hover {
+  
+      background: #5848c2;
+  
+    }

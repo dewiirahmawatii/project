@@ -2,9 +2,8 @@
 
 session_start();
 
-if(!isset($_SESSION['login']))
-{
-    header("Location:../login.php");
+if (!isset($_SESSION['login'])) {
+    header("Location: ../login.php");
     exit;
 }
 
@@ -14,33 +13,45 @@ include "../connect.php";
    STATISTIK
 =========================== */
 
-$product=mysqli_fetch_row(
-mysqli_query($id,"SELECT COUNT(*) FROM product")
+$product = mysqli_fetch_row(
+    mysqli_query($connect, "SELECT COUNT(*) FROM produk")
 );
 
-$kategori=mysqli_fetch_row(
-mysqli_query($id,"SELECT COUNT(*) FROM category")
+$kategori = mysqli_fetch_row(
+    mysqli_query($connect, "SELECT COUNT(*) FROM kategori")
 );
 
-$pesanan=mysqli_fetch_row(
-mysqli_query($id,"SELECT COUNT(*) FROM orders")
+$pesanan = mysqli_fetch_row(
+    mysqli_query($connect, "SELECT COUNT(*) FROM orders")
 );
 
-/* Jika kolom total belum ada, pendapatan dibuat 0 */
+/* ===========================
+   TOTAL PENDAPATAN
+=========================== */
 
-$pendapatan=[0];
+$pendapatan = mysqli_fetch_row(
+    mysqli_query($connect, "SELECT SUM(total) FROM orders")
+);
+
+if ($pendapatan[0] == NULL) {
+    $pendapatan[0] = 0;
+}
 
 /* ===========================
    PESANAN TERBARU
 =========================== */
 
-$order=mysqli_query(
-$id,
-"SELECT * FROM orders
-ORDER BY order_date DESC
-LIMIT 5"
+$order = mysqli_query(
+    $connect,
+    "SELECT * FROM orders
+    ORDER BY order_date DESC
+    LIMIT 5"
 );
 
+?>
+
+<?php
+$username = $_SESSION['username'] ?? 'Admin';
 ?>
 
 <!DOCTYPE html>
@@ -133,12 +144,15 @@ Dashboard Admin
 </h1>
 
 <p>
+    Selamat Datang,
+    <b><?= htmlspecialchars($username); ?></b> 👋
+</p>
 
-Selamat Datang,
+<img src="https://ui-avatars.com/api/?background=ff5fa2&color=fff&name=<?= urlencode($username); ?>">
 
 <b>
 
-<?php echo $_SESSION['username'];?>
+<?= isset($_SESSION['username']) ? $_SESSION['username'] : 'Admin'; ?>
 
 </b>
 
@@ -151,7 +165,7 @@ Selamat Datang,
 <div class="profile-admin">
 
 <img
-src="https://ui-avatars.com/api/?background=ff5fa2&color=fff&name=<?php echo $_SESSION['username'];?>">
+src="https://ui-avatars.com/api/?background=ff5fa2&color=fff&name=<?= urlencode($username); ?>">
 
 </div>
 
