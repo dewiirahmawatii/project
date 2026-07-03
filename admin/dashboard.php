@@ -29,13 +29,7 @@ $pesanan = mysqli_fetch_row(
    TOTAL PENDAPATAN
 =========================== */
 
-$pendapatan = mysqli_fetch_row(
-    mysqli_query($connect, "SELECT SUM(total) FROM orders")
-);
-
-if ($pendapatan[0] == NULL) {
-    $pendapatan[0] = 0;
-}
+$pendapatan = array(0);
 
 /* ===========================
    PESANAN TERBARU
@@ -43,14 +37,12 @@ if ($pendapatan[0] == NULL) {
 
 $order = mysqli_query(
     $connect,
-    "SELECT * FROM orders
+    "SELECT *
+    FROM orders
     ORDER BY order_date DESC
     LIMIT 5"
 );
 
-?>
-
-<?php
 $username = $_SESSION['username'] ?? 'Admin';
 ?>
 
@@ -146,18 +138,6 @@ Dashboard Admin
 <p>
     Selamat Datang,
     <b><?= htmlspecialchars($username); ?></b> 👋
-</p>
-
-<img src="https://ui-avatars.com/api/?background=ff5fa2&color=fff&name=<?= urlencode($username); ?>">
-
-<b>
-
-<?= isset($_SESSION['username']) ? $_SESSION['username'] : 'Admin'; ?>
-
-</b>
-
-👋
-
 </p>
 
 </div>
@@ -410,7 +390,7 @@ Buka →
 </div>
 
 <!-- ===========================
-     INFORMASI
+INFORMASI
 =========================== -->
 
 <div class="info-grid">
@@ -488,7 +468,7 @@ Buka →
 </div>
 
 <!-- ===========================
-     FOOTER
+FOOTER
 =========================== -->
 
 <div class="dashboard-footer">

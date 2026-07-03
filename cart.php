@@ -33,7 +33,7 @@ if(isset($_GET['add']))
 <html>
 <head>
 <title>Keranjang</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
@@ -67,7 +67,7 @@ INNER JOIN product
 ON cart.product_code=product.code
 ";
 
-$result=mysqli_query($id,$sql);
+$result=mysqli_query($connect,$sql);
 
 while($row=mysqli_fetch_assoc($result))
 {

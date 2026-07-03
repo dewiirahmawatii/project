@@ -10,7 +10,7 @@ if(!isset($_SESSION['login']))
 
 include "../connect.php";
 
-$kategori=mysqli_query($id,"SELECT * FROM category");
+$category=mysqli_query($connect,"SELECT * FROM category");
 
 ?>
 
