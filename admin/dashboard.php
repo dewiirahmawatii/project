@@ -14,11 +14,11 @@ include "../connect.php";
 =========================== */
 
 $product = mysqli_fetch_row(
-    mysqli_query($connect, "SELECT COUNT(*) FROM produk")
+    mysqli_query($connect, "SELECT COUNT(*) FROM product")
 );
 
 $kategori = mysqli_fetch_row(
-    mysqli_query($connect, "SELECT COUNT(*) FROM kategori")
+    mysqli_query($connect, "SELECT COUNT(*) FROM category")
 );
 
 $pesanan = mysqli_fetch_row(
