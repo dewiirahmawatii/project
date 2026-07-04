@@ -151,11 +151,11 @@ src="https://ui-avatars.com/api/?background=ff5fa2&color=fff&name=<?= urlencode(
 
 <h4>Total Produk</h4>
 
-<h1>
+<h2>
 
 <?php echo $product[0];?>
 
-</h1>
+</h2>
 
 </div>
 
@@ -169,11 +169,11 @@ src="https://ui-avatars.com/api/?background=ff5fa2&color=fff&name=<?= urlencode(
 
 <h4>Total category</h4>
 
-<h1>
+<h2>
 
 <?php echo $category[0];?>
 
-</h1>
+</h2>
 
 </div>
 
@@ -187,11 +187,11 @@ src="https://ui-avatars.com/api/?background=ff5fa2&color=fff&name=<?= urlencode(
 
 <h4>Total Pesanan</h4>
 
-<h1>
+<h2>
 
 <?php echo $pesanan[0];?>
 
-</h1>
+</h2>
 
 </div>
 
