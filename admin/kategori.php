@@ -39,32 +39,38 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <div class="admin">
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
+   <!-- Sidebar -->
 
-        <h2>🌸 BEAUTY</h2>
+<div class="sidebar">
 
-        <a href="dashboard.php">
-            🏠 Dashboard
-        </a>
+<h2>🌸 BEAUTY</h2>
 
-        <a href="produk.php">
-            🧴 Produk
-        </a>
+<a href="dashboard.php">
+<i class="fa fa-home"></i>
+Dashboard
+</a>
 
-        <a href="kategori.php" class="active">
-            🏷 Kategori
-        </a>
+<a href="produk.php" class="active">
+<i class="fa fa-box"></i>
+Produk
+</a>
 
-        <a href="pesanan.php">
-            📦 Pesanan
-        </a>
+<a href="kategori.php">
+<i class="fa fa-tags"></i>
+Kategori
+</a>
 
-        <a href="../logout.php">
-            🚪 Logout
-        </a>
+<a href="pesanan.php">
+<i class="fa fa-shopping-cart"></i>
+Pesanan
+</a>
 
-    </div>
+<a href="../logout.php">
+<i class="fa fa-sign-out-alt"></i>
+Logout
+</a>
+
+</div>
 
     <!-- CONTENT -->
     <div class="content">
