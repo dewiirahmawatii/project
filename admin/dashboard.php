@@ -79,7 +79,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <h2>🌸 BEAUTY</h2>
 
-<a href="dashboard.php">
+<a href="dashboard.php"class="active">
 <i class="fa fa-home"></i>
 Dashboard
 </a>
@@ -94,7 +94,7 @@ Produk
 Kategori
 </a>
 
-<a href="pesanan.php" class="active">
+<a href="pesanan.php">
 <i class="fa fa-shopping-cart"></i>
 Pesanan
 </a>
