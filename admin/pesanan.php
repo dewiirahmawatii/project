@@ -24,13 +24,37 @@ $result = mysqli_query($connect, $sql);
 
 <div class="admin">
 
+ <!-- Sidebar -->
+
 <div class="sidebar">
-    <h2>🌸 BEAUTY</h2>
-    <a href="dashboard.php">Dashboard</a>
-    <a href="produk.php">Produk</a>
-    <a href="kategori.php">Kategori</a>
-    <a href="pesanan.php" class="active">Pesanan</a>
-    <a href="../logout.php">Logout</a>
+
+<h2>🌸 BEAUTY</h2>
+
+<a href="dashboard.php">
+<i class="fa fa-home"></i>
+Dashboard
+</a>
+
+<a href="produk.php">
+<i class="fa fa-box"></i>
+Produk
+</a>
+
+<a href="kategori.php">
+<i class="fa fa-tags"></i>
+Kategori
+</a>
+
+<a href="pesanan.php" class="active">
+<i class="fa fa-shopping-cart"></i>
+Pesanan
+</a>
+
+<a href="../logout.php">
+<i class="fa fa-sign-out-alt"></i>
+Logout
+</a>
+
 </div>
 
 <div class="content">
