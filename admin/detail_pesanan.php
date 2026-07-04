@@ -77,23 +77,28 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 <h2>🌸 BEAUTY</h2>
 
 <a href="dashboard.php">
-🏠 Dashboard
+<i class="fa fa-home"></i>
+Dashboard
 </a>
 
 <a href="produk.php">
-🧴 Produk
+<i class="fa fa-box"></i>
+Produk
 </a>
 
 <a href="kategori.php">
-🏷️ Kategori
+<i class="fa fa-tags"></i>
+Kategori
 </a>
 
 <a href="pesanan.php" class="active">
-📦 Pesanan
+<i class="fa fa-shopping-cart"></i>
+Pesanan
 </a>
 
 <a href="../logout.php">
-🚪 Logout
+<i class="fa fa-sign-out-alt"></i>
+Logout
 </a>
 
 </div>
