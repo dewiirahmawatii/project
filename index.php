@@ -228,13 +228,13 @@ if(mysqli_num_rows($cek)>0)
 <section class="banner-section">
 
     <div class="banner-card pink">
-        <h2>Best Deals</h2>
+        <i class="fa-solid fa-tag" style="font-size: 50px"></i> <h2>Best Deals</h2>
         <p>Dapatkan diskon hingga 50% untuk rangkaian Brightening Series yang membantu mencerahkan, melembapkan, dan membuat kulit tampak lebih sehat setiap hari.</p>
     </div>
 
     <div class="banner-card purple">
 
-        <h2>Best Seller</h2>
+        <i class="fa-solid fa-award" style="font-size: 50px"></i> <h2>Best Seller</h2>
 
         <p>Produk pilihan favorit pelanggan dengan kualitas terbaik. Sudah dipercaya ribuan pengguna untuk mendapatkan kulit yang lebih glowing dan terawat.</p>
 
@@ -242,7 +242,7 @@ if(mysqli_num_rows($cek)>0)
 
     <div class="banner-card orange">
 
-        <h2>FreeOngkir</h2>
+        <i class="fa-solid fa-box-open" style="font-size: 50px"></i> <h2>FreeOngkir</h2>
 
         <p>Nikmati gratis ongkos kirim ke seluruh Indonesia untuk setiap pembelian minimal Rp100.000, tanpa biaya tambahan.</p>
 
@@ -302,7 +302,7 @@ while ($k = mysqli_fetch_assoc($kategori)) {
 <section id="produk">
     <div class="title">
         <h2>
-            🔥 Produk Terlaris
+            Produk Terlaris
         </h2>
 
         <p>

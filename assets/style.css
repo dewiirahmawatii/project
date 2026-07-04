@@ -1157,13 +1157,13 @@ body {
 
 .banner-card h2 {
   margin-bottom: 10px;
-  font-size: 28px;
+  margin-top: 5px;
+  font-size: 20px;
 }
 
 .banner-card p {
   margin-bottom: 20px;
   font-size: 15px;
-  text-align: left;
 }
 
 .banner-card a {
