@@ -50,12 +50,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 Dashboard
 </a>
 
-<a href="produk.php" class="active">
+<a href="produk.php">
 <i class="fa fa-box"></i>
 Produk
 </a>
 
-<a href="kategori.php">
+<a href="kategori.php"class="active">
 <i class="fa fa-tags"></i>
 Kategori
 </a>
