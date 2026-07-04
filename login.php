@@ -50,7 +50,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <div class="login-left">
 
-<h1>🌸 Beauty Skincare</h1>
+<h1>Beauty Skincare</h1>
 
 <p>
 
@@ -59,7 +59,7 @@ dalam satu dashboard modern.
 
 </p>
 
-<img src="images/purple/serum.jpeg">
+<img src="images/logo2.png">
 
 </div>
 
