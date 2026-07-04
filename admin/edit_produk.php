@@ -222,8 +222,8 @@ type="submit"
 name="update_product"
 
 class="btn-save">
-
-💾 Update Produk
+<i class="fa fa-floppy-disk"></i>
+Update Produk
 
 </button>
 
