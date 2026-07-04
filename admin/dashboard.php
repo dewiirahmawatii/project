@@ -73,51 +73,39 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
      SIDEBAR
 =========================== -->
 
+<!-- Sidebar -->
+
 <div class="sidebar">
 
 <h2>🌸 BEAUTY</h2>
 
-<a href="dashboard.php" class="active">
-
-<i class="fa-solid fa-house"></i>
-
+<a href="dashboard.php">
+<i class="fa fa-home"></i>
 Dashboard
-
 </a>
 
 <a href="produk.php">
-
-<i class="fa-solid fa-box-open"></i>
-
+<i class="fa fa-box"></i>
 Produk
-
 </a>
 
 <a href="kategori.php">
-
-<i class="fa-solid fa-tags"></i>
-
+<i class="fa fa-tags"></i>
 Kategori
-
 </a>
 
-<a href="pesanan.php">
-
-<i class="fa-solid fa-cart-shopping"></i>
-
+<a href="pesanan.php" class="active">
+<i class="fa fa-shopping-cart"></i>
 Pesanan
-
 </a>
 
 <a href="../logout.php">
-
-<i class="fa-solid fa-right-from-bracket"></i>
-
+<i class="fa fa-sign-out-alt"></i>
 Logout
-
 </a>
 
 </div>
+
 
 <!-- ===========================
      CONTENT
