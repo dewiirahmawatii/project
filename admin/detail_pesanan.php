@@ -364,7 +364,8 @@ type="submit"
 name="update_status"
 class="btn-save">
 
-💾 Simpan Perubahan
+<i class="fa fa-save"></i>
+Simpan Perubahan
 
 </button>
 
