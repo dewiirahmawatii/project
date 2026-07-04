@@ -18,6 +18,8 @@ $result = mysqli_query($connect, $sql);
     <meta charset="UTF-8">
     <title>Kelola Pesanan</title>
     <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
 <body>
