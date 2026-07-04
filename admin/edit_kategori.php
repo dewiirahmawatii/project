@@ -1,40 +1,37 @@
+```php
 <?php
 
 session_start();
 
+if(!isset($_SESSION['login']))
+{
+    header("Location:../login.php");
+    exit;
+}
+
 include "../connect.php";
 
-$code=$_GET['code'];
+$code = $_GET['code'];
 
-$data=mysqli_fetch_assoc(
+$sql = "SELECT * FROM category WHERE code='$code'";
 
-mysqli_query(
-$connect,
-"SELECT *
-FROM category
-WHERE code='$code'"
+$result = mysqli_query($connect,$sql);
 
-)
-
-);
+$data = mysqli_fetch_assoc($result);
 
 if(isset($_POST['update']))
 {
+    $kategori = $_POST['kategori'];
 
-$kategori=$_POST['kategori'];
+    mysqli_query(
+        $connect,
+        "UPDATE category
+        SET category='$kategori'
+        WHERE code='$code'"
+    );
 
-mysqli_query(
-
-$connect,
-
-"UPDATE category
-SET category='$kategori'
-WHERE code='$code'"
-
-);
-
-header("Location:kategori.php");
-
+    header("Location:kategori.php");
+    exit;
 }
 
 ?>
@@ -45,58 +42,98 @@ header("Location:kategori.php");
 
 <head>
 
+<meta charset="UTF-8">
+
 <title>Edit Kategori</title>
 
 <link rel="stylesheet" href="../assets/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="card-form">
+<div class="admin">
 
-<h2>Edit Kategori</h2>
+<div class="sidebar">
 
-<form method="POST">
+<h2>🌸 BEAUTY</h2>
 
-<input
+<a href="dashboard.php">
+<i class="fa fa-home"></i>
+Dashboard
+</a>
 
-type="text"
+<a href="produk.php">
+<i class="fa fa-box"></i>
+Produk
+</a>
 
-name="kategori"
+<a href="kategori.php" class="active">
+<i class="fa fa-tags"></i>
+Kategori
+</a>
 
-value="<?php echo $data['category'];?>"
+<a href="pesanan.php">
+<i class="fa fa-shopping-cart"></i>
+Pesanan
+</a>
 
-required>
+<a href="../logout.php">
+<i class="fa fa-sign-out-alt"></i>
+Logout
+</a>
 
-<br><br>
+</div>
 
-<button
+<div class="content">
 
-type="submit"
+<div class="topbar">
 
-name="update"
+<h1>Edit Kategori</h1>
 
-class="btn-save">
+<a href="kategori.php" class="btn-add">
 
-Update
-
-</button>
-
-<a
-
-href="kategori.php"
-
-class="btn-back">
-
-Kembali
+← Kembali
 
 </a>
 
+</div>
+
+<form method="POST" class="form-produk">
+
+<label>
+
+Nama Kategori
+
+</label>
+
+<input
+type="text"
+name="kategori"
+value="<?php echo $data['category'];?>"
+required>
+
+<button
+type="submit"
+name="update"
+class="btn-save">
+
+<i class="fa fa-floppy-disk"></i>
+
+Update Kategori
+
+</button>
+
 </form>
+
+</div>
 
 </div>
 
 </body>
 
 </html>
+```
