@@ -10,10 +10,6 @@ include "../connect.php";
 
 $sql = "SELECT * FROM orders ORDER BY order_date DESC";
 $result = mysqli_query($connect, $sql);
-
-if (!$result) {
-    die("Query Error : " . mysqli_error($connect));
-}
 ?>
 
 <!DOCTYPE html>
@@ -22,77 +18,103 @@ if (!$result) {
     <meta charset="UTF-8">
     <title>Kelola Pesanan</title>
     <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
+
 <body>
 
 <div class="admin">
 
-    <div class="sidebar">
-        <h2>🌸 BEAUTY</h2>
+ <!-- Sidebar -->
 
-        <a href="dashboard.php">Dashboard</a>
-        <a href="produk.php">Produk</a>
-        <a href="kategori.php">Kategori</a>
-        <a href="pesanan.php" class="active">Pesanan</a>
-        <a href="../logout.php">Logout</a>
-    </div>
+<div class="sidebar">
 
-    <div class="content">
+<h2>🌸 BEAUTY</h2>
 
-        <div class="topbar">
-            <h1>Kelola Pesanan</h1>
-        </div>
+<a href="dashboard.php">
+<i class="fa fa-home"></i>
+Dashboard
+</a>
 
-        <table class="produk-table">
+<a href="produk.php">
+<i class="fa fa-box"></i>
+Produk
+</a>
 
-            <tr>
-                <th>No</th>
-                <th>Nama Customer</th>
-                <th>No HP</th>
-                <th>Total</th>
-                <th>Tanggal</th>
-                <th>Status</th>
-                <th>Aksi</th>
-            </tr>
+<a href="kategori.php">
+<i class="fa fa-tags"></i>
+Kategori
+</a>
 
-            <?php
-            $no = 1;
+<a href="pesanan.php" class="active">
+<i class="fa fa-shopping-cart"></i>
+Pesanan
+</a>
 
-            while ($row = mysqli_fetch_assoc($result)) {
-            ?>
+<a href="../logout.php">
+<i class="fa fa-sign-out-alt"></i>
+Logout
+</a>
 
-            <tr>
+</div>
 
-                <td><?= $no++; ?></td>
+<div class="content">
 
-                <td><?= $row['customer_name']; ?></td>
+<div class="topbar">
+    <h1>Kelola Pesanan</h1>
+</div>
 
-                <td><?= $row['customer_phone']; ?></td>
+<table class="produk-table">
 
-                <td>Rp <?= number_format($row['total'], 0, ',', '.'); ?></td>
+<tr>
+    <th>No</th>
+    <th>Nama</th>
+    <th>No HP</th>
+    <th>Total</th>
+    <th>Tanggal</th>
+    <th>Status</th>
+    <th>Aksi</th>
+</tr>
 
-                <td><?= $row['order_date']; ?></td>
+<?php
+$no = 1;
+while ($row = mysqli_fetch_assoc($result)) {
+?>
 
-                <td>
-                    <span class="badge">
-                        <?= $row['status']; ?>
-                    </span>
-                </td>
+<tr>
+    <td><?= $no++; ?></td>
+    <td><?= $row['customer_name']; ?></td>
+    <td><?= $row['customer_phone']; ?></td>
+    <td>Rp <?= number_format($row['total']); ?></td>
+    <td><?= $row['order_date']; ?></td>
 
-                <td>
-                    <a href="detail_pesanan.php?id=<?= $row['id']; ?>" class="btn-detail">
-                        👁 Detail
-                    </a>
-                </td>
+    <td>
+        <?php
+        if ($row['status'] == "Diproses") {
+            echo "<b style='color:blue'>Diproses</b>";
+        } elseif ($row['status'] == "Selesai") {
+            echo "<b style='color:green'>Selesai</b>";
+        } elseif ($row['status'] == "Dikirim") {
+            echo "<b style='color:purple'>Dikirim</b>";
+        } elseif ($row['status'] == "Dibatalkan") {
+            echo "<b style='color:red'>Dibatalkan</b>";
+        } else {
+            echo "<b style='color:orange'>Menunggu</b>";
+        }
+        ?>
+    </td>
 
-            </tr>
+    <td>
+        <a href="detail_pesanan.php?id=<?= $row['id']; ?>" class="btn-detail">Detail</a>
+    </td>
+</tr>
 
-            <?php } ?>
+<?php } ?>
 
-        </table>
+</table>
 
-    </div>
-
+</div>
 </div>
 
 </body>

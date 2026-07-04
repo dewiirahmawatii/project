@@ -8,16 +8,10 @@ if(isset($_GET['add']))
 $product=$_GET['add'];
 
 mysqli_query(
-
-$id,
-
-"INSERT INTO wishlist
-(product_code)
-
-VALUES
-
-('$product')"
-
+    $connect,
+    "INSERT INTO wishlist (product_code)
+    VALUES
+    ('$product')"
 );
 
 }

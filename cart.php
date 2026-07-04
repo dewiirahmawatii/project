@@ -6,20 +6,20 @@ if(isset($_GET['add']))
 {
     $kode=$_GET['add'];
 
-    $cek=mysqli_query($id,
+    $cek=mysqli_query($connect,
     "SELECT * FROM cart
     WHERE product_code='$kode'");
 
     if(mysqli_num_rows($cek)>0)
     {
-        mysqli_query($id,
+        mysqli_query($connect,
         "UPDATE cart
         SET qty=qty+1
         WHERE product_code='$kode'");
     }
     else
     {
-        mysqli_query($id,
+        mysqli_query($connect,
         "INSERT INTO cart(product_code,qty)
         VALUES('$kode',1)");
     }

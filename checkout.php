@@ -6,7 +6,7 @@ include 'connect.php';
 $total = 0;
 
 $cart_total = mysqli_query(
-    $id,
+    $connect,
     "SELECT
         cart.qty,
         product.price
@@ -23,7 +23,7 @@ while ($c = mysqli_fetch_assoc($cart_total)) {
 if (isset($_POST['checkout'])) {
 
     mysqli_query(
-        $id,
+        $connect,
         "INSERT INTO orders
         (
             customer_name,
@@ -40,17 +40,17 @@ if (isset($_POST['checkout'])) {
         )"
     );
 
-    $order_id = mysqli_insert_id($id);
+    $order_id = mysqli_insert_id($connect);
 
     $cart = mysqli_query(
-        $id,
+        $connect    ,
         "SELECT * FROM cart"
     );
 
     while ($item = mysqli_fetch_assoc($cart)) {
 
         mysqli_query(
-            $id,
+            $connect,
             "INSERT INTO order_detail
             (
                 order_id,
@@ -66,14 +66,14 @@ if (isset($_POST['checkout'])) {
         );
 
         mysqli_query(
-            $id,
+            $connect,
             "UPDATE product
              SET stock = stock - " . $item['qty'] . "
              WHERE code = '" . $item['product_code'] . "'"
         );
     }
 
-    mysqli_query($id, "DELETE FROM cart");
+    mysqli_query($connect, "DELETE FROM cart");
 
     echo "
     <script>

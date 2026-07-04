@@ -10,7 +10,7 @@ if(!isset($_SESSION['login']))
 
 include "../connect.php";
 
-$kategori=mysqli_query($id,"SELECT * FROM category");
+$category=mysqli_query($connect,"SELECT * FROM category");
 
 ?>
 
@@ -79,7 +79,7 @@ Tambah Produk
 
 </h1>
 
-<a href="produk.php" class="btn">
+<a href="produk.php" class="btn-add">
 
 ← Kembali
 
@@ -148,7 +148,7 @@ name="category_code">
 
 <?php
 
-while($row=mysqli_fetch_assoc($kategori))
+while($row=mysqli_fetch_assoc($category))
 {
 
 ?>

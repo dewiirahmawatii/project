@@ -17,7 +17,7 @@ $product = mysqli_fetch_row(
     mysqli_query($connect, "SELECT COUNT(*) FROM product")
 );
 
-$kategori = mysqli_fetch_row(
+$category = mysqli_fetch_row(
     mysqli_query($connect, "SELECT COUNT(*) FROM category")
 );
 
@@ -29,13 +29,7 @@ $pesanan = mysqli_fetch_row(
    TOTAL PENDAPATAN
 =========================== */
 
-$pendapatan = mysqli_fetch_row(
-    mysqli_query($connect, "SELECT SUM(total) FROM orders")
-);
-
-if ($pendapatan[0] == NULL) {
-    $pendapatan[0] = 0;
-}
+$pendapatan = array(0);
 
 /* ===========================
    PESANAN TERBARU
@@ -43,14 +37,12 @@ if ($pendapatan[0] == NULL) {
 
 $order = mysqli_query(
     $connect,
-    "SELECT * FROM orders
+    "SELECT *
+    FROM orders
     ORDER BY order_date DESC
     LIMIT 5"
 );
 
-?>
-
-<?php
 $username = $_SESSION['username'] ?? 'Admin';
 ?>
 
@@ -81,51 +73,39 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
      SIDEBAR
 =========================== -->
 
+<!-- Sidebar -->
+
 <div class="sidebar">
 
 <h2>🌸 BEAUTY</h2>
 
-<a href="dashboard.php" class="active">
-
-<i class="fa-solid fa-house"></i>
-
+<a href="dashboard.php"class="active">
+<i class="fa fa-home"></i>
 Dashboard
-
 </a>
 
 <a href="produk.php">
-
-<i class="fa-solid fa-box-open"></i>
-
+<i class="fa fa-box"></i>
 Produk
-
 </a>
 
 <a href="kategori.php">
-
-<i class="fa-solid fa-tags"></i>
-
+<i class="fa fa-tags"></i>
 Kategori
-
 </a>
 
 <a href="pesanan.php">
-
-<i class="fa-solid fa-cart-shopping"></i>
-
+<i class="fa fa-shopping-cart"></i>
 Pesanan
-
 </a>
 
 <a href="../logout.php">
-
-<i class="fa-solid fa-right-from-bracket"></i>
-
+<i class="fa fa-sign-out-alt"></i>
 Logout
-
 </a>
 
 </div>
+
 
 <!-- ===========================
      CONTENT
@@ -146,18 +126,6 @@ Dashboard Admin
 <p>
     Selamat Datang,
     <b><?= htmlspecialchars($username); ?></b> 👋
-</p>
-
-<img src="https://ui-avatars.com/api/?background=ff5fa2&color=fff&name=<?= urlencode($username); ?>">
-
-<b>
-
-<?= isset($_SESSION['username']) ? $_SESSION['username'] : 'Admin'; ?>
-
-</b>
-
-👋
-
 </p>
 
 </div>
@@ -199,11 +167,11 @@ src="https://ui-avatars.com/api/?background=ff5fa2&color=fff&name=<?= urlencode(
 
 <div>
 
-<h4>Total Kategori</h4>
+<h4>Total category</h4>
 
 <h1>
 
-<?php echo $kategori[0];?>
+<?php echo $category[0];?>
 
 </h1>
 
@@ -410,7 +378,7 @@ Buka →
 </div>
 
 <!-- ===========================
-     INFORMASI
+INFORMASI
 =========================== -->
 
 <div class="info-grid">
@@ -437,11 +405,11 @@ Buka →
 
 <div class="info-item">
 
-<span>Kategori</span>
+<span>category</span>
 
 <b>
 
-<?php echo $kategori[0]; ?>
+<?php echo $category[0]; ?>
 
 </b>
 
@@ -488,7 +456,7 @@ Buka →
 </div>
 
 <!-- ===========================
-     FOOTER
+FOOTER
 =========================== -->
 
 <div class="dashboard-footer">

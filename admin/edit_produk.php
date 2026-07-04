@@ -14,11 +14,11 @@ $code=$_GET['id'];
 
 $sql="SELECT * FROM product WHERE code='$code'";
 
-$result=mysqli_query($id,$sql);
+$result=mysqli_query($connect,$sql);
 
 $data=mysqli_fetch_assoc($result);
 
-$kategori=mysqli_query($id,"SELECT * FROM category");
+$kategori=mysqli_query($connect,"SELECT * FROM category");
 
 ?>
 
@@ -48,23 +48,28 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 <h2>🌸 BEAUTY</h2>
 
 <a href="dashboard.php">
-🏠 Dashboard
+<i class="fa fa-home"></i>
+Dashboard
 </a>
 
 <a href="produk.php" class="active">
-🧴 Produk
+<i class="fa fa-box"></i>
+Produk
 </a>
 
 <a href="kategori.php">
-🏷 Kategori
+<i class="fa fa-tags"></i>
+Kategori
 </a>
 
 <a href="pesanan.php">
-📦 Pesanan
+<i class="fa fa-shopping-cart"></i>
+Pesanan
 </a>
 
 <a href="../logout.php">
-🚪 Logout
+<i class="fa fa-sign-out-alt"></i>
+Logout
 </a>
 
 </div>
@@ -75,7 +80,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <h1>Edit Produk</h1>
 
-<a href="produk.php" class="btn">
+<a href="produk.php" class="btn-add">
 
 ← Kembali
 
@@ -217,8 +222,8 @@ type="submit"
 name="update_product"
 
 class="btn-save">
-
-💾 Update Produk
+<i class="fa fa-floppy-disk"></i>
+Update Produk
 
 </button>
 

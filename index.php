@@ -51,13 +51,9 @@ if(mysqli_num_rows($cek)>0)
 ?>
 
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
 <meta charset="UTF-8">
-
 <title>Beauty Skincare</title>
 
 <meta
@@ -72,6 +68,7 @@ if(mysqli_num_rows($cek)>0)
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
 <body>
@@ -107,28 +104,28 @@ if(mysqli_num_rows($cek)>0)
     <div class="menu">
 
         <a href="index.php">
-            Home
+        <i class="fa-solid fa-house-chimney"></i> Home
         </a>
 
         <a href="#kategori">
-            Kategori
+        <i class="fa-solid fa-layer-group"></i> Kategori
         </a>
 
         <a href="#produk">
-            Produk
+        <i class="fa-solid fa-bag-shopping"></i> Produk
         </a>
 
         <a href="wishlist.php">
-            ❤️ Wishlist
+            <i class="fa-solid fa-heart" style="color: #ff4f8a;"></i> Wishlist
         </a>
 
         <a href="cart.php">
-            🛒 Keranjang
+            <i class="fa-solid fa-cart-shopping"></i> Keranjang
             (<?php echo $jml;?>)
         </a>
 
         <a href="login.php">
-            Admin
+        <i class="fa-solid fa-user-shield"></i> Admin
         </a>
 
     </div>
@@ -144,7 +141,7 @@ if(mysqli_num_rows($cek)>0)
     <div class="hero-text">
 
         <h1>
-            Glow With Confidence ✨
+            Glow With Confidence
         </h1>
 
         <p>
@@ -166,7 +163,7 @@ if(mysqli_num_rows($cek)>0)
     <div class="hero-image">
 
         <img
-            src="images/purple/mois.jpeg"
+            src="images/logo2.png"
             alt="Beauty">
 
     </div>
@@ -179,8 +176,8 @@ if(mysqli_num_rows($cek)>0)
 
 <section class="flash">
 
-    <h2>
-        🔥 FLASH SALE
+    <h2 style="font-size: 33px;">
+        FLASH SALE 
     </h2>
 
     <div id="countdown">
@@ -189,42 +186,33 @@ if(mysqli_num_rows($cek)>0)
 
     <div class="flash-grid">
 
-        <div class="flash-card">
-
-            💖
-
+        <div class="flash-card diskon">
+            <i class="fa-solid fa-heart"></i>
             <h3>
-                Diskon 50%
+                <a href="#produk"> Diskon 50% </a>
+            </h3>
+        </div>
+
+        <div class="flash-card buy1get1">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <h3>
+                <a href="#produk"> Buy 1 Get 1 </a>
             </h3>
 
         </div>
 
-        <div class="flash-card">
-
-            ✨
-
+        <div class="flash-card ongkir">
+            <i class="fa-solid fa-truck"></i>
             <h3>
-                Buy 1 Get 1
+                <a href="#produk"> Gratis Ongkir </a>
             </h3>
 
         </div>
 
-        <div class="flash-card">
-
-            🚚
-
+        <div class="flash-card best-seller">
+            <i class="fa-solid fa-star"></i>
             <h3>
-                Gratis Ongkir
-            </h3>
-
-        </div>
-
-        <div class="flash-card">
-
-            ⭐
-
-            <h3>
-                Best Seller
+                <a href="#produk"> Best Seller </a>
             </h3>
 
         </div>
@@ -240,38 +228,23 @@ if(mysqli_num_rows($cek)>0)
 <section class="banner-section">
 
     <div class="banner-card pink">
-
-        <h2>✨ Brightening Series</h2>
-
-        <p>Dapatkan diskon hingga 50%</p>
-
-        <a href="#produk">
-            Belanja Sekarang
-        </a>
-
+        <h2>Best Deals</h2>
+        <p>Dapatkan diskon hingga 50% untuk rangkaian Brightening Series yang membantu mencerahkan, melembapkan, dan membuat kulit tampak lebih sehat setiap hari.</p>
     </div>
 
     <div class="banner-card purple">
 
-        <h2>💖 Best Seller</h2>
+        <h2>Best Seller</h2>
 
-        <p>Produk favorit pelanggan</p>
-
-        <a href="#produk">
-            Lihat Produk
-        </a>
+        <p>Produk pilihan favorit pelanggan dengan kualitas terbaik. Sudah dipercaya ribuan pengguna untuk mendapatkan kulit yang lebih glowing dan terawat.</p>
 
     </div>
 
     <div class="banner-card orange">
 
-        <h2>🚚 Gratis Ongkir</h2>
+        <h2>FreeOngkir</h2>
 
-        <p>Minimal belanja Rp100.000</p>
-
-        <a href="#produk">
-            Belanja
-        </a>
+        <p>Nikmati gratis ongkos kirim ke seluruh Indonesia untuk setiap pembelian minimal Rp100.000, tanpa biaya tambahan.</p>
 
     </div>
 
