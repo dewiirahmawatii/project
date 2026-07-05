@@ -2753,3 +2753,363 @@ body {
 .badge.selesai {
   background: #2ecc71;
 }
+
+/* ==================================
+      KERANJANG BELANJA PREMIUM
+================================== */
+
+body{
+    background:#fff7fa;
+}
+
+.container-keranjang{
+    width:98%;
+    max-width:none;
+    margin:30px auto;
+}
+
+.judul-keranjang{
+    text-align:center;
+    color:#ff4f87;
+    font-size:42px;
+    margin-bottom:30px;
+    font-weight:700;
+}
+
+/* TABEL */
+
+.tabel-keranjang{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    background:#ffffff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+}
+
+.tabel-keranjang th{
+    background:linear-gradient(135deg,#ff4f87,#ff7eb3);
+    color:white;
+    padding:18px;
+    font-size:16px;
+    letter-spacing:0.5px;
+}
+
+.tabel-keranjang td{
+    padding:18px;
+    text-align:center;
+    border-bottom:1px solid #f3f3f3;
+}
+
+.tabel-keranjang tr:hover{
+    background:#fff8fb;
+}
+
+.tabel-keranjang tr:last-child{
+    background:#fff0f6;
+    font-size:18px;
+}
+
+/* TOMBOL HAPUS */
+
+.btn-hapus-keranjang{
+    display:inline-block;
+    padding:10px 18px;
+    background:#ff4d4d;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.btn-hapus-keranjang:hover{
+    background:#e63946;
+    transform:translateY(-2px);
+}
+
+/* TOTAL DAN TOMBOL */
+
+.aksi-keranjang{
+    margin-top:30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* KEMBALI */
+
+.btn-kembali-keranjang{
+    display:inline-block;
+    padding:14px 25px;
+    background:white;
+    color:#555;
+    text-decoration:none;
+    border:2px solid #dddddd;
+    border-radius:12px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.btn-kembali-keranjang:hover{
+    background:#f5f5f5;
+}
+
+/* CHECKOUT */
+
+.btn-checkout-keranjang{
+    display:inline-block;
+    padding:15px 35px;
+    background:linear-gradient(135deg,#ff4f87,#ff7eb3);
+    color:white;
+    text-decoration:none;
+    border-radius:14px;
+    font-weight:700;
+    box-shadow:0 10px 25px rgba(255,79,135,0.35);
+    transition:0.3s;
+}
+
+.btn-checkout-keranjang:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 30px rgba(255,79,135,0.45);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .judul-keranjang{
+        font-size:30px;
+    }
+
+    .tabel-keranjang{
+        font-size:14px;
+    }
+
+    .aksi-keranjang{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .btn-kembali-keranjang,
+    .btn-checkout-keranjang{
+        width:100%;
+        text-align:center;
+        box-sizing:border-box;
+    }
+}
+
+/* ==================================
+      GAMBAR PRODUK KERANJANG
+================================== */
+
+.gambar-produk-keranjang{
+    width:80px;
+    height:80px;
+    object-fit:cover;
+    border-radius:12px;
+    border:2px solid #f5f5f5;
+    box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+.nama-produk-keranjang{
+    text-align:left !important;
+    font-weight:600;
+    max-width:250px;
+    line-height:1.5;
+}
+
+.baris-total-keranjang{
+    background:#fff0f6;
+}
+
+.total-harga-keranjang{
+    color:#ff4f87;
+    font-size:22px;
+}
+
+/* Nomor urut */
+
+.tabel-keranjang td:first-child{
+    font-weight:bold;
+    color:#666;
+}
+
+/* Hover gambar */
+
+.gambar-produk-keranjang:hover{
+    transform:scale(1.05);
+    transition:0.3s;
+}
+
+/* ==================================
+      BACKGROUND LUXURY BEAUTY
+================================== */
+
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:'Poppins',sans-serif;
+    background:#ffffff;
+}
+
+
+/* ==================================
+      HERO PREMIUM
+================================== */
+
+.hero-keranjang{
+    position:relative;
+    margin-bottom:50px;
+}
+
+.hero-keranjang-content{
+
+    padding:80px 50px;
+
+    border-radius:35px;
+
+    text-align:center;
+
+    background:
+    linear-gradient(
+    135deg,
+    rgba(255,255,255,.95),
+    rgba(255,248,251,.92));
+
+    border:1px solid rgba(255,255,255,.8);
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+    0 30px 80px rgba(255,79,135,.10),
+    0 10px 25px rgba(0,0,0,.05);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+
+/* Badge */
+
+.badge-keranjang{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    border-radius:50px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #ff4f87,
+    #ff9fc0);
+
+    color:white;
+
+    font-size:12px;
+
+    letter-spacing:3px;
+
+    font-weight:700;
+
+    box-shadow:
+    0 10px 25px rgba(255,79,135,.25);
+}
+
+/* Judul Utama */
+
+.judul-keranjang{
+
+    margin:25px 0 15px;
+
+    font-size:64px;
+
+    font-weight:800;
+
+    line-height:1.1;
+
+    color:#2f2f2f;
+}
+
+.subjudul-keranjang{
+
+    max-width:700px;
+
+    margin:auto;
+
+    color:#777;
+
+    font-size:17px;
+
+    line-height:1.8;
+}
+
+.badge-keranjang{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    border-radius:50px;
+
+    background:#ff4f87;
+
+    color:white;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+    font-weight:700;
+}
+/* Highlight */
+
+.hero-highlight{
+
+    margin-top:35px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+}
+
+.hero-item{
+
+    background:white;
+
+    padding:15px 25px;
+
+    border-radius:18px;
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,.05);
+
+    font-weight:600;
+
+    color:#555;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .judul-keranjang{
+        font-size:42px;
+    }
+
+    .hero-keranjang-content{
+        padding:50px 25px;
+    }
+
+    .subjudul-keranjang{
+        font-size:15px;
+    }
+}
