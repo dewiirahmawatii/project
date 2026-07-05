@@ -3113,3 +3113,37 @@ body{
         font-size:15px;
     }
 }
+
+.status {
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    display: inline-block;
+}
+
+/* Menunggu = kuning */
+.status.menunggu {
+    background: #f1c40f;
+}
+
+/* Diproses = biru */
+.status.diproses {
+    background: #3498db;
+}
+
+/* Dikirim = ungu */
+.status.dikirim {
+    background: #9b59b6;
+}
+
+/* Selesai = hijau */
+.status.selesai {
+    background: #2ecc71;
+}
+
+/* Dibatalkan = merah */
+.status.batal {
+    background: #e74c3c;
+}

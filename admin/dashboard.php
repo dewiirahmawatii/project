@@ -271,13 +271,27 @@ while($row=mysqli_fetch_assoc($order))
 </td>
 
 <td>
+<?php
+$status = strtolower(trim($row['status']));
 
-<span class="badge">
+if ($status == 'menunggu') {
+    $class = 'status menunggu';
+} elseif ($status == 'diproses') {
+    $class = 'status diproses';
+} elseif ($status == 'dikirim') {
+    $class = 'status dikirim';
+} elseif ($status == 'selesai') {
+    $class = 'status selesai';
+} elseif ($status == 'dibatalkan') {
+    $class = 'status batal';
+} else {
+    $class = 'status';
+}
+?>
 
-<?php echo $row['status'];?>
-
+<span class="<?= $class; ?>">
+    <?= htmlspecialchars($row['status']); ?>
 </span>
-
 </td>
 
 <td>
