@@ -7,9 +7,7 @@ $total = 0;
 
 $cart_total = mysqli_query(
     $connect,
-    "SELECT
-        cart.qty,
-        product.price
+    "SELECT cart.qty, product.price
      FROM cart
      INNER JOIN product
      ON cart.product_code = product.code"
@@ -42,10 +40,7 @@ if (isset($_POST['checkout'])) {
 
     $order_id = mysqli_insert_id($connect);
 
-    $cart = mysqli_query(
-        $connect    ,
-        "SELECT * FROM cart"
-    );
+    $cart = mysqli_query($connect, "SELECT * FROM cart");
 
     while ($item = mysqli_fetch_assoc($cart)) {
 
@@ -88,55 +83,92 @@ if (isset($_POST['checkout'])) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Checkout</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
 
-<div class="card-form">
+<div class="container-keranjang">
 
-    <h2>Total Belanja Rp <?php echo number_format($total); ?></h2>
+   <!-- HERO -->
+<div class="hero-keranjang">
+    <div class="hero-keranjang-content">
 
-    <h2>Checkout Pesanan</h2>
+        <span class="badge-keranjang">
+            BEAUTY SKINCARE OFFICIAL STORE
+        </span>
 
-    <form method="POST">
+        <h1 class="judul-keranjang">
+            🌸 Checkout Pesanan 🌸
+        </h1>
 
+        <p class="subjudul-keranjang">
+            Silakan isi data dengan benar agar pesanan bisa diproses dengan lancar.
+        </p>
+
+    </div>
+</div>
+
+<!-- INFO -->
+<div class="checkout-info-box">
+    <h2>Isi Data Diri</h2>
+    <p>
+        Pastikan nama, nomor HP, dan alamat sudah benar.
+        Data ini digunakan untuk pengiriman pesanan.
+    </p>
+</div>
+
+<form method="POST">
+
+    <!-- FORM -->
+    <div class="checkout-card">
+        <h4>Masukkan Nama Anda :</h4>
         <input
             type="text"
             name="customer_name"
-            placeholder="Nama Pembeli"
             required>
 
-        <br><br>
-
+        <h4>Masukkan Nomor HP :</h4>
         <input
             type="text"
             name="customer_phone"
-            placeholder="Nomor HP"
             required>
 
-        <br><br>
-
+        <h4>Masukkan Alamat Lengkap :</h4>
         <textarea
             name="customer_address"
-            placeholder="Alamat Lengkap"
             required></textarea>
 
-        <br><br>
+    </div>
 
-        <button
-            type="submit"
-            name="checkout"
-            class="btn-save">
-            Checkout
-        </button>
+    <!-- TOTAL -->
+    <div class="checkout-total-box">
 
-    </form>
+        <h2>Total yang Harus Dibayar</h2>
 
+        <h1 class="checkout-total">
+            Rp <?php echo number_format($total); ?>
+        </h1>
+
+    </div>
+
+    <!-- BUTTON -->
+    <button
+        type="submit"
+        name="checkout"
+        class="btn-checkout-keranjang">
+        Checkout Sekarang →
+    </button>
+
+</form>
+
+<!-- BACK -->
+<div class="aksi-keranjang" style="margin-top:20px;">
+    <a href="cart.php" class="btn-kembali-keranjang">
+        ← Kembali ke Keranjang
+    </a>
 </div>
-
-</body>
-</html>

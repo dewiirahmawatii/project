@@ -2859,20 +2859,38 @@ body{
 /* CHECKOUT */
 
 .btn-checkout-keranjang{
-    display:inline-block;
-    padding:15px 35px;
-    background:linear-gradient(135deg,#ff4f87,#ff7eb3);
-    color:white;
-    text-decoration:none;
-    border-radius:14px;
-    font-weight:700;
-    box-shadow:0 10px 25px rgba(255,79,135,0.35);
-    transition:0.3s;
+    display: block;
+    width: 100%;            /* 🔥 full lebar */
+    padding: 16px 20px;
+
+    background: linear-gradient(135deg,#c2185b,#ad1457); /* 🔥 pink tua */
+
+    color: white;
+    text-decoration: none;
+
+    border-radius: 14px;
+
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+
+    box-shadow: 0 10px 25px rgba(173,20,87,0.35);
+
+    transition: all 0.25s ease;
+
+    border: none;
+    cursor: pointer;
+
+    margin-top: 20px;
 }
 
 .btn-checkout-keranjang:hover{
-    transform:translateY(-3px);
-    box-shadow:0 15px 30px rgba(255,79,135,0.45);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(173,20,87,0.45);
+}
+
+.btn-checkout-keranjang:active{
+    transform: translateY(0);
 }
 
 /* RESPONSIVE */
@@ -2892,8 +2910,7 @@ body{
         gap:15px;
     }
 
-    .btn-kembali-keranjang,
-    .btn-checkout-keranjang{
+    .btn-kembali-keranjang{
         width:100%;
         text-align:center;
         box-sizing:border-box;
@@ -3146,4 +3163,202 @@ body{
 /* Dibatalkan = merah */
 .status.batal {
     background: #e74c3c;
+}
+
+/* =========================
+   TOTAL BOX (PREMIUM SOFT)
+========================= */
+.checkout-total-box {
+    background: linear-gradient(135deg, #ff6fa3, #ff9ec4);
+    color: white;
+
+    padding: 16px 20px;   /* 🔥 dari 28px jadi lebih kecil */
+    border-radius: 18px;
+
+    text-align: center;
+    margin-top: 15px;
+
+    box-shadow: 0 12px 30px rgba(255, 77, 141, 0.25);
+    animation: fadeUp 0.6s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.checkout-total-box::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 60%);
+    transform: rotate(25deg);
+}
+
+.checkout-total-box h2 {
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+}
+
+.checkout-total {
+    font-size: 34px;
+    margin-top: 8px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* =========================
+   CARD FORM (GLASS MODERN)
+========================= */
+.checkout-card {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(14px);
+    padding: 32px;
+    border-radius: 20px;
+    margin-top: 20px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.4);
+}
+
+.checkout-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+}
+
+/* =========================
+   INPUT (MINIMAL CLEAN)
+========================= */
+.checkout-card input,
+.checkout-card textarea {
+    width: 100%;
+    padding: 14px 16px;
+    margin-top: 12px;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.25s ease;
+    background: #fff;
+}
+
+.checkout-card input:focus,
+.checkout-card textarea:focus {
+    border-color: #ff6fa3;
+    box-shadow: 0 0 0 3px rgba(255, 111, 163, 0.18);
+}
+
+/* TEXTAREA */
+.checkout-card textarea {
+    min-height: 120px;
+    resize: none;
+}
+
+/* angka total */
+.checkout-total {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* =========================
+   BACK BUTTON (CLEAN)
+========================= */
+.aksi-keranjang a.btn-kembali-keranjang {
+    display: inline-block;
+    padding: 12px 18px;
+    border-radius: 12px;
+    background: #fff;
+    color: #444;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: 0.25s ease;
+    font-weight: 500;
+}
+
+.aksi-keranjang a.btn-kembali-keranjang:hover {
+    background: #ff4d8d;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   ANIMATION
+========================= */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.checkout-wrapper {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* BIAR SEMUA BLOCK NGGAK FULL MELEBAR */
+.checkout-info-box {
+    width: 100%;
+    max-width: 100%;
+    margin: 20px 0 0;
+
+    padding: 22px 28px;
+    box-sizing: border-box;
+
+    text-align: center;
+
+    /* 🔥 samakan dengan tombol checkout */
+    background: linear-gradient(135deg,#c2185b,#ad1457);
+
+    border: none;
+    border-radius: 14px;
+
+    box-shadow: 0 10px 25px rgba(173,20,87,0.25);
+
+    color: white; /* biar teks ikut kontras */
+}
+
+.checkout-info-box h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+}
+
+.checkout-info-box p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+}
+
+
+.checkout-card,
+.checkout-total-box,
+.checkout-info-box {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* SPACING LEBIH ENAK */
+.checkout-card {
+    margin-top: 15px;
+}
+
+.checkout-total-box {
+    margin-top: 15px;
+}
+
+
+/* BACK BUTTON biar gak “nempel kiri” */
+.aksi-keranjang {
+    text-align: center;
 }
