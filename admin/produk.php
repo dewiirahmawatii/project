@@ -114,7 +114,7 @@ while($row=mysqli_fetch_assoc($result))
 <img
 src="../images/<?php echo $row['image'];?>">
 
-<h3>
+<h3 class="nama-produk">
 
 <?php echo $row['name'];?>
 
@@ -172,6 +172,32 @@ class="hapus">
 </div>
 
 </div>
+
+</div>
+
+<script>
+document.getElementById("search").addEventListener("keyup", function() {
+
+    let keyword = this.value.toLowerCase();
+    let cards = document.querySelectorAll(".produk-admin-card");
+
+    cards.forEach(function(card) {
+
+        let nama = card.querySelector(".nama-produk")
+                       .textContent
+                       .toLowerCase();
+
+        if (nama.includes(keyword)) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+
+    });
+
+});
+</script>
+
 
 </body>
 
